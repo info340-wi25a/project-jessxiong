@@ -4,3 +4,4 @@ This repository contains code for an interactive information web app, created fo
 
 Hello I am Jennie
 Olivia Kim
+Eunji Shin
