@@ -8,4 +8,20 @@ em {
 
 li {
     line-height: 25px;
+    margin-bottom: 0.5rem;
+}
+
+header {
+    background-color: purple;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: purple;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 }
