@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="your name">
+    <meta name="description" content="description of your page">
+    <title>My Page Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#"><span class="material-icons" aria-label="Home">FocusFlow</span></a></li>
+            <li><a href="#timer">Timer</a></li>
+            <li><a href="#notes"></a>Notes</li>
+          </ul>
+    </nav>
+    <header>
+        <div class="container">
+          <h1>To-Do List</h1>
+        </div>
+    </header> 
+    <main>
+        <div class="container">
+            <div class="row">
+                <!-- <div class="col-md-6 col-xl-3 d-flex "> -->
+                    <div class="card-body todo-list today-list">
+                        <div class="card w-100 mb-4">
+                            <div class="row align-items-center">
+                                <div class="col-sm-auto col-xl-12 mb-xl-3">
+                                    <h2>To-Do Today:</h2>
+                                    <form action="/action_page.php">
+                                        <input type="checkbox" id="today1" name="today1" value="notes">
+                                        <label for="today1"> Take INFO 340 notes</label><br>
+                                        <input type="checkbox" id="today2" name="today2" value="lecture">
+                                        <label for="today2"> Watch lecture</label><br>
+                                        <input type="checkbox" id="today3" name="today3" value="notes">
+                                        <label for="today3"> Review INFO 340 notes</label><br>
+                                    </form>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+                
+                <!-- <div class="col-md-6 col-xl-3 d-flex "> -->
+                    <div class="card-body todo-list">
+                        <div class="card w-100 mb-4">
+                            <div class="row align-items-center">
+                                <div class="col-sm-auto col-xl-12 mb-xl-3">
+                                    <h2>Work To-Do:</h2>
+                                    <form action="/action_page.php">
+                                        <input type="checkbox" id="today1" name="today1" value="notes">
+                                        <label for="today1"> Change shift</label><br>
+                                        <input type="checkbox" id="today2" name="today2" value="lecture">
+                                        <label for="today2"> Email boss by EOD</label><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+
+                <!-- <div class="col-md-6 col-xl-3 d-flex "> -->
+                    <div class="card-body todo-list">
+                        <div class="card w-100 mb-4">
+                            <div class="row align-items-center">
+                                <div class="col-sm-auto col-xl-12 mb-xl-3">
+                                    <h2>INFO 340 To-Do:</h2>
+                                    <form action="/action_page.php">
+                                        <input type="checkbox" id="today1" name="today1" value="notes">
+                                        <label for="today1"> Finish problem set</label><br>
+                                        <input type="checkbox" id="today2" name="today2" value="lecture">
+                                        <label for="today2"> Attend office hours</label><br>
+                                        <input type="checkbox" id="today3" name="today3" value="notes">
+                                        <label for="today3"> Debug code</label><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+        <footer>
+            <section id="add-task">
+                <div class="container">
+                    <h2>Add a New Task</h2>
+                    <form id="todo-form" class="footer-element">
+                        <input type="text" id="new-task" placeholder="Enter your next task..." required>
+                        <select id="task-list" class="footer-element">
+                            <option value="today-list">To-Do Today</option>
+                            <option value="work-list">Work To-Do</option>
+                            <option value="work-list">INFO 340 To-Do</option>
+                        </select>
+                        <button type="submit" class="footer-element">Add Task</button>
+                    </form>
+                </div>
+            </section>
+        </footer>
+    </main>
+
+</body>
+</html>
