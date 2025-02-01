@@ -2,9 +2,22 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'DM Sans';
+}
+
 main {
-    margin-top: 2 rem;
+    margin-top: 3 rem;
     padding: 2rem;
+}
+
+h1 {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.home-icon {
+    width: 10px;
 }
 
 .row {
@@ -28,6 +41,8 @@ main {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 5px solid;
+    border-color: #d1e5f4;
 }
 
 .todo-list h2 {
@@ -61,7 +76,10 @@ main {
 #add-task .footer-element {
     margin-right: 1 rem;
     margin-left: 1rem;
+    margin-top: 1rem;
 }
+
+
 
 nav {
     position: fixed;
@@ -69,7 +87,7 @@ nav {
     left: 0;
     width: 100%;
     background-color: #f5f5f5;
-    color: #b0c4de;
+    color: #2D4E7B;
     padding: 1rem;
     padding-bottom: 1rem;
     z-index: 1000;
@@ -87,14 +105,33 @@ nav li {
     margin: 0 1rem;
 }
 
-nav a {
-    color: #b0c4ed;
-    text-decoration: none;
+#nav-links {
+    display: none;
 }
 
-nav li a:hover {
-    color: #375971;
-    border-bottom: .8rem solid #f0f0f0;
+#hamburger-menu {
+    display: block;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+
+.navbar-brand {
+    font-weight: bold;
+    color: #2D4E7B;
+}
+
+.navbar-nav .nav-link {
+    color: #2D4E7B;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #17263A;
+}
+
+.progress-bar {
+    background-color: #FFD1E9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 
 }
 
