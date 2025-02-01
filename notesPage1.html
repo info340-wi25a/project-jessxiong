@@ -9,16 +9,33 @@
 
 </head>
 <body>
-    <header class="container-fluid py-5">
+    <nav class="navbar navbar-expand-md navbar-light">
         <div class="container">
-        <nav>
-        <ul>
-            <li><a href="/index.html"><span class="material-icons" aria-label="Home">FocusFlow</span></a></li>
-            <li><a href="#timer">Timer</a></li>
-            <li><a href="#notes"></a>Notes</li>
-          </ul>
-        </nav>
+            <a class="navbar-brand" href="#">
+                <img src="img/6585301_books_education_learning_school_study_icon.png" width="20" height="20" alt="Home" aria-label="logo">
+                FocusFlow
+            </a>
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#timer">Timer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#notes">Notes</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    <header>
+        <h1>Subjects</h1>
     </header>
 
     <div class="container">
@@ -42,7 +59,7 @@
                 <div class="card h-100">
                     <div class="card-body subject">
                         <img class="pb-3 card-img-top" src="img/INFO340Cover.jpg" alt="INFO 340 Subject page image">
-                        <h1 class="card-title"> INFO 340 </h1>
+                        <h2 class="card-title"> INFO 340 </h2>
                     </div>
                 </div>
             </div>
@@ -52,7 +69,7 @@
                 <div class="card h-100">
                     <div class="card-body subject">
                         <img class="pb-3 card-img-top" src="img/INFO360Cover.jpg" alt="INFO 360 Subject page image">
-                        <h1 class="card-title"> INFO 360 </h1>
+                        <h2 class="card-title"> INFO 360 </h2>
                     </div>
                 </div>
             </div>
@@ -62,7 +79,7 @@
                 <div class="card h-100">
                     <div class="card-body subject">
                         <img class="pb-3 card-img-top" src="img/INFO380Cover.jpg" alt="INFO 380 Subject page image">
-                        <h1 class="card-title"> INFO 380 </h1>
+                        <h2 class="card-title"> INFO 380 </h2>
                     </div>
                 </div>
             </div>
@@ -72,7 +89,7 @@
                 <div class="card h-100">
                     <div class="card-body subject">
                         <img class="pb-3 card-img-top" src="img/CSE414Cover.jpg" alt="CSE 414 Subject page image">
-                        <h1 class="card-title"> CSE 414 </h1>
+                        <h2 class="card-title"> CSE 414 </h2>
                     </div>
                 </div>
             </div>
@@ -82,7 +99,7 @@
                 <div class="card h-100">
                     <div class="card-body subject">
                         <img class="pb-3 card-img-top" src="img/CSE373Cover.jpg" alt="CSE 373 Subject page image">
-                        <h1 class="card-title"> CSE 373 </h1>
+                        <h2 class="card-title"> CSE 373 </h2>
                     </div>
                 </div>
             </div>
@@ -91,7 +108,7 @@
             <div class="col-sm-12 col-xl-3">
                 <div class="card h-100">
                     <div class="card-body subject">
-                        <h1 class="card-title"> Add a New Subject </h1>
+                        <h2 class="card-title addCard"> Add a New Subject </h2>
                         <form class="footer-element addSubject">
                             <input class="SubjectName form-control me-2" type="text" placeholder="Subject name...">
                         </form>

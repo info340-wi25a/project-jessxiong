@@ -143,6 +143,7 @@ nav li {
 .searchBar {
     display: flex;
     padding-bottom: 2rem;
+    padding-top: 2rem;
     max-width: 75%;
     margin: auto;
 }
@@ -159,13 +160,23 @@ nav li {
     padding-top: 1rem;
 }
 
+.card h2 {
+    font-size: 2rem;
+    text-align: right;
+    padding: 0;
+}
+
+.card .addCard {
+    text-align: center;
+}
+
 @media (min-width: 598px) {
 
 }
 
 @media (min-width: 992px) {
     img {
-        max-height: 150px;
+        max-height: 170px;
     }
 }
 
