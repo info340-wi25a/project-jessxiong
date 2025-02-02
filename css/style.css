@@ -2,9 +2,22 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'DM Sans';
+}
+
 main {
-    margin-top: 2 rem;
+    margin-top: 3 rem;
     padding: 2rem;
+}
+
+h1 {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.home-icon {
+    width: 10px;
 }
 
 .row {
@@ -28,6 +41,8 @@ main {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 5px solid;
+    border-color: #d1e5f4;
 }
 
 .todo-list h2 {
@@ -61,6 +76,7 @@ main {
 #add-task .footer-element {
     margin-right: 1 rem;
     margin-left: 1rem;
+    margin-top: 1rem;
 }
 
 nav {
@@ -69,7 +85,7 @@ nav {
     left: 0;
     width: 100%;
     background-color: #f5f5f5;
-    color: #b0c4de;
+    color: #2D4E7B;
     padding: 1rem;
     padding-bottom: 1rem;
     z-index: 1000;
@@ -87,72 +103,159 @@ nav li {
     margin: 0 1rem;
 }
 
-nav a {
-    color: #b0c4ed;
-    text-decoration: none;
+#nav-links {
+    display: none;
 }
 
-nav li a:hover {
-    color: #375971;
-    border-bottom: .8rem solid #f0f0f0;
-}
-
-
-
-
-.folder-title {
-    margin-top: 100px;
-    margin-bottom: 10px;
-    margin-left: 60px;
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.container {
-    max-width: 1300px;
-    margin: auto 50px;
-}
-
-.note {
-    background-color: lightskyblue;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.title, .content {
-    width: 100%;
-    border: none;
-    background: none;
-    outline: none;
-    margin-bottom: 10px;
-}
-
-.title {
-    font-weight: bold;
-    font-size: 1.25rem;
-}
-
-.content {
-    margin-left: 10px;
-    flex-grow: 1;
-    font-size: 1rem;
-    min-height: 150px;
-    height: auto;
-    line-height: 1.5;
-    border-bottom: 1px solid black;
+#hamburger-menu {
     display: block;
+    font-size: 2rem;
+    cursor: pointer;
 }
 
-.add-image {
-    display: flex;
-    justify-content: right;
-    font-size: 14px;
-    margin-top: 10px;
+
+.navbar-brand {
+    font-weight: bold;
+    color: #2D4E7B;
 }
 
-.add-note {
+.navbar-nav .nav-link {
+    color: #2D4E7B;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #17263A;
+}
+
+.progress-bar {
+    background-color: #FFD1E9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
+}
+
+.card .subject {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.searchBar {
     display: flex;
-    justify-content: flex-end;
-    font-size: 14px;
-    margin-top: 10px;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    max-width: 75%;
+    margin: auto;
+}
+
+.searchBar select {
+   margin-right: 0.5rem;
+   border-color: lightgray;
+   border-radius: 8px;
+   padding: .5rem;
+}
+
+.addSubject {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.card h2 {
+    font-size: 2rem;
+    text-align: right;
+    padding: 0;
+}
+
+.card .addCard {
+    text-align: center;
+}
+
+@media (min-width: 598px) {
+
+}
+
+@media (min-width: 992px) {
+    img {
+        max-height: 170px;
+    }
+}
+
+#timer-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 8rem; 
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.timer {
+    text-align: center; 
+}
+
+.timer-circle {
+    width: 300px; 
+    height: 300px; 
+    border-radius: 50%;
+    border: 15px solid #ff6b6b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; 
+    margin-bottom: 2rem; 
+}
+
+#timer-display {
+    font-size: 3rem; 
+    font-weight: bold;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center; 
+    gap: 1rem; 
+    margin-top: 0; 
+}
+
+.timer-controls button {
+    width: 120px; 
+    padding: 0.7rem;
+    font-size: 1.2rem; 
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    transition: background-color 0.2s ease;
+}
+
+.timer-controls button:hover {
+    background-color: #d6d6d6;
+}
+
+.timer-customization {
+    text-align: left;
+    max-width: 400px;
+    flex: 1 1 auto;
+}
+
+.timer-customization h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.timer-input {
+    margin-bottom: 1rem;
+}
+
+.timer-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.timer-input input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
