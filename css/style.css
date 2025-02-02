@@ -171,6 +171,22 @@ nav li {
     text-align: center;
 }
 
+.credits {
+    display:flex;
+    justify-content: center;
+    background-color: gainsboro;
+    padding: 1rem;
+
+}
+
+.credits p {
+    padding-bottom: 0;
+}
+
+.content-body {
+    padding-bottom: 3rem;
+}
+
 @media (min-width: 598px) {
     #hamburger-menu {
         display: block;
