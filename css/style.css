@@ -149,6 +149,11 @@ nav li {
     margin: auto;
 }
 
+.searchBar label {
+    padding-right: 1rem;
+    padding-top: .5rem;
+}
+
 .searchBar select {
    margin-right: 0.5rem;
    border-color: lightgray;
@@ -159,6 +164,10 @@ nav li {
 .addSubject {
     padding-bottom: 3.5rem;
     padding-top: 2rem;
+}
+
+.addSubject label {
+    padding-bottom: .5rem;
 }
 
 .addButton {
