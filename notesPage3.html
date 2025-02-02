@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>NotesPage-AddingNotes</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#"><span class="material-icons" aria-label="Home">FocusFlow</span></a></li>
+            <li><a href="#timer">Timer</a></li>
+            <li><a href="#notes">Notes</a></li>
+        </ul>
+    </nav>
+    <header>
+          <h1 class="folder-title">INFO 340</h1>
+    </header> 
+    <main>
+        <div class="container">
+            <div class="note">
+                <input type="text" class="title" placeholder="Enter title">
+                <textarea class="content" placeholder="Write your notes..."></textarea>
+                <div class="add-image">
+                    <form action="/action_page.php">
+                        <input type="file" id="img" name="img" accept="image/*">
+                    </form>
+                </div>
+            </div>
+            <div class="add-note">
+                <form action="/action_page.php">
+                    <button type="submit">Add Note</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
