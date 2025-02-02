@@ -226,13 +226,13 @@ nav li {
     justify-content: center;
     align-items: flex-start;
     margin-top: 8rem; 
-    gap: 2rem;
+    gap: 8rem;
     padding: 1rem;
 }
 
 .timer {
     text-align: center; 
-}
+}   
 
 .timer-circle {
     width: 300px; 
