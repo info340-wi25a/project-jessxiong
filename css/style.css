@@ -107,13 +107,6 @@ nav li {
     display: none;
 }
 
-#hamburger-menu {
-    display: block;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-
 .navbar-brand {
     font-weight: bold;
     color: #2D4E7B;
@@ -154,14 +147,24 @@ nav li {
 }
 
 .addSubject {
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+    padding-bottom: 3.5rem;
+    padding-top: 2rem;
+}
+
+.addButton {
+    display:flex;
+    justify-content: right;
 }
 
 .card h2 {
     font-size: 2rem;
     text-align: right;
     padding: 0;
+    color:black;
+}
+
+.card a {
+    text-decoration: none;
 }
 
 .card .addCard {
@@ -169,12 +172,25 @@ nav li {
 }
 
 @media (min-width: 598px) {
-
+    #hamburger-menu {
+        display: block;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+    
 }
 
 @media (min-width: 992px) {
     img {
         max-height: 170px;
+    }
+
+    nav li {
+        font-size: 1.3rem;
+    }
+
+    html {
+        height: 100%;
     }
 }
 
