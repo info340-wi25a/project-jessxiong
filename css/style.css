@@ -45,7 +45,7 @@ h1 {
     border-color: #d1e5f4;
 }
 
-.todo-list h2 {
+#to-do-title {
     text-align: center;
 }
 
@@ -286,7 +286,7 @@ nav li {
 
 .container {
     max-width: 1300px;
-    margin: auto 50px;
+    /* margin: auto 50px; */
 }
 
 .note {
