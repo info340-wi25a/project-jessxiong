@@ -4,6 +4,16 @@
 
 body {
     font-family: 'DM Sans';
+    display: flex;
+    flex-direction: column;
+}
+
+html, body {
+  height: 100%;
+}
+
+main, .content-body {
+  flex: 1 0 auto;
 }
 
 main {
@@ -172,11 +182,11 @@ nav li {
 }
 
 .credits {
-    display:flex;
+    display: flex;
     justify-content: center;
+    flex-shrink: 0;
     background-color: gainsboro;
     padding: 1rem;
-
 }
 
 .credits p {
@@ -293,7 +303,7 @@ nav li {
 }
 
 .folder-title {
-    margin-top: 100px;
+    margin-top: 80px;
     margin-bottom: 10px;
     margin-left: 60px;
     font-size: 2rem;
@@ -306,8 +316,9 @@ nav li {
 }
 
 .note {
-    background-color: lightskyblue;
+    background-color: #d1e5f4;
     padding: 20px;
+    padding-bottom: 50px;
     border-radius: 10px;
 }
 
@@ -335,17 +346,20 @@ nav li {
     display: block;
 }
 
+::placeholder {
+    color: rgb(55, 55, 55);
+}
+
 .add-image {
-    display: flex;
-    justify-content: right;
+    position: absolute;
+    right: 0;
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 7px;
 }
 
 .add-note {
     display: flex;
-    justify-content: flex-end;
+    justify-content: end;
     font-size: 14px;
     margin-top: 10px;
 }
-
