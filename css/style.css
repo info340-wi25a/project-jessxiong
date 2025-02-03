@@ -156,14 +156,28 @@ nav li {
    padding: .5rem;
 }
 
+.searchBar label {
+    padding-right: 1rem;
+    padding-top: .5rem;
+}
+
 .addSubject {
     padding-bottom: 3.5rem;
     padding-top: 2rem;
 }
 
+.addSubject label {
+    padding-bottom: .5rem;
+}
+
 .addButton {
     display:flex;
     justify-content: right;
+}
+
+.buttonStyle {
+    background-color: #2D4E7B;
+    color: white;
 }
 
 .card h2 {
