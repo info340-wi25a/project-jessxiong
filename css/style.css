@@ -175,6 +175,11 @@ nav li {
     justify-content: right;
 }
 
+.buttonStyle {
+    color: white;
+    background-color: #2D4E7B;
+}
+
 .card h2 {
     font-size: 2rem;
     text-align: right;
