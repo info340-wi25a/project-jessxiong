@@ -354,14 +354,6 @@ nav li {
     margin-top: 10px;
 }
 
-@media (min-width: 598px) {
-    #hamburger-menu {
-        display: block;
-        font-size: 2rem;
-        cursor: pointer;
-    }
-    
-}
 
 @media (min-width: 992px) {
     img {
@@ -370,9 +362,5 @@ nav li {
 
     nav li {
         font-size: 1.3rem;
-    }
-
-    html {
-        height: 100%;
     }
 }
