@@ -12,7 +12,7 @@ html, body {
   height: 100%;
 }
 
-main, .content-body {
+main {
   flex: 1 0 auto;
 }
 
@@ -202,8 +202,32 @@ nav li {
     padding-bottom: 0;
 }
 
+<<<<<<< HEAD
+@media (min-width: 598px) {
+    #hamburger-menu {
+        display: block;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+    
+}
+
+@media (min-width: 992px) {
+    img {
+        max-height: 170px;
+    }
+
+    nav li {
+        font-size: 1.3rem;
+    }
+
+    html {
+        height: 100%;
+    }
+=======
 .content-body {
     padding-bottom: 3rem;
+>>>>>>> e90f4b543a91cb30c0c0211ba10f2df05a759f04
 }
 
 #timer-page {
@@ -298,7 +322,6 @@ nav li {
 
 .container {
     max-width: 1300px;
-    /* margin: auto 50px; */
 }
 
 .note {
