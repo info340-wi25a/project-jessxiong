@@ -55,16 +55,13 @@ h1 {
     border-color: #d1e5f4;
 }
 
-#to-do-title {
-    text-align: center;
-}
 
 .today-list {
     border: 10px solid;
     border-color: #ffe5f1;
 }
 
-#add-task {
+.add-task {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,7 +80,7 @@ h1 {
     
 }
 
-#add-task .footer-element {
+.add-task .footer-element {
     margin-right: 1 rem;
     margin-left: 1rem;
     margin-top: 1rem;
@@ -111,10 +108,6 @@ nav li {
     display: inline;
     padding: 0;
     margin: 0 1rem;
-}
-
-#nav-links {
-    display: none;
 }
 
 .navbar-brand {
@@ -182,7 +175,7 @@ nav li {
 
 .card h2 {
     font-size: 2rem;
-    text-align: right;
+    text-align: center;
     padding: 0;
     color:black;
 }
@@ -211,14 +204,6 @@ nav li {
     padding-bottom: 3rem;
 }
 
-@media (min-width: 598px) {
-    #hamburger-menu {
-        display: block;
-        font-size: 2rem;
-        cursor: pointer;
-    }
-    
-}
 
 @media (min-width: 992px) {
     img {
