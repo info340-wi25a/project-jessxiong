@@ -55,20 +55,6 @@
             </form>
         </div>
 
-<<<<<<< HEAD
-        <div class="container">
-            <div class="row">
-                <!--Subject 1-->
-                <div class="col-sm-12 col-lg-3">
-                    <div class="card h-100">
-                        <a href="notesPage3.html">
-                            <div class="card-body subject">
-                                <img class="pb-3 card-img-top" src="img/NotesCover.jpg" alt="INFO 340 Subject page image">
-                                <h2 class="card-title"> Lecture 1</h2>
-                            </div>
-                        </a>
-                    </div>
-=======
     <div class="container">
         <div class="row">
             <!--Subject 1-->
@@ -80,21 +66,8 @@
                             <h2 class="card-title"> Lecture 1</h2>
                         </div>
                     </a>
->>>>>>> origin/main
                 </div>
 
-<<<<<<< HEAD
-                <!--Subject 2-->
-                <div class="col-sm-12 col-lg-3">
-                    <div class="card h-100">
-                        <a href="notesPage3.html">
-                            <div class="card-body subject">
-                                <img class="pb-3 card-img-top" src="img/NotesCover.jpg" alt="INFO 360 Subject page image">
-                                <h2 class="card-title"> Assignment 1</h2>
-                            </div>
-                        </a>
-                    </div>
-=======
             <!--Subject 2-->
             <div class="col-sm-12 col-lg-3">
                 <div class="card h-100">
@@ -104,21 +77,8 @@
                             <h2 class="card-title"> Assignment 1</h2>
                         </div>
                     </a>
->>>>>>> origin/main
                 </div>
 
-<<<<<<< HEAD
-                <!--Subject 3-->
-                <div class="col-sm-12 col-lg-3">
-                    <div class="card h-100">
-                        <a href="notesPage3.html">
-                            <div class="card-body subject">
-                                <img class="pb-3 card-img-top" src="img/NotesCover.jpg" alt="INFO 380 Subject page image">
-                                <h2 class="card-title"> Exam 1</h2>
-                            </div>
-                        </a>
-                    </div>
-=======
             <!--Subject 3-->
             <div class="col-sm-12 col-lg-3">
                 <div class="card h-100">
@@ -128,21 +88,8 @@
                             <h2 class="card-title"> Exam 1</h2>
                         </div>
                     </a>
->>>>>>> origin/main
                 </div>
 
-<<<<<<< HEAD
-                <!--Subject 4-->
-                <div class="col-sm-12 col-lg-3">
-                    <div class="card h-100">
-                        <a href="notesPage3.html">
-                            <div class="card-body subject">
-                                <img class="pb-3 card-img-top" src="img/NotesCover.jpg" alt="CSE 414 Subject page image">
-                                <h2 class="card-title"> Exam 2</h2>
-                            </div>
-                        </a>
-                    </div>
-=======
             <!--Subject 4-->
             <div class="col-sm-12 col-lg-3">
                 <div class="card h-100">
@@ -152,21 +99,8 @@
                             <h2 class="card-title"> Exam 2</h2>
                         </div>
                     </a>
->>>>>>> origin/main
                 </div>
 
-<<<<<<< HEAD
-                <!--Subject 5-->
-                <div class="col-sm-12 col-lg-3">
-                    <div class="card h-100">
-                        <a href="notesPage3.html">
-                            <div class="card-body subject">
-                                <img class="pb-3 card-img-top" src="img/NotesCover.jpg" alt="CSE 373 Subject page image">
-                                <h2 class="card-title"> Final Project</h2>
-                            </div>
-                        </a>
-                    </div>
-=======
             <!--Subject 5-->
             <div class="col-sm-12 col-lg-3">
                 <div class="card h-100">
@@ -176,7 +110,6 @@
                             <h2 class="card-title"> Final Project</h2>
                         </div>
                     </a>
->>>>>>> origin/main
                 </div>
 
                 <!--Subject 6-->
