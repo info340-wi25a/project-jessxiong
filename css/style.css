@@ -390,3 +390,14 @@ nav li {
     font-size: 14px;
     margin-top: 10px;
 }
+
+
+@media (min-width: 992px) {
+    img {
+        max-height: 170px;
+    }
+
+    nav li {
+        font-size: 1.3rem;
+    }
+}
