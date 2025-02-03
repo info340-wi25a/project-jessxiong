@@ -343,9 +343,7 @@ nav li {
 
 
 .folder-title {
-    margin-top: 80px;
-    margin-bottom: 10px;
-    margin-left: 60px;
+    text-align: center;
     font-size: 2rem;
     font-weight: bold;
 }
@@ -402,10 +400,15 @@ nav li {
     justify-content: end;
     font-size: 14px;
     margin-top: 10px;
+    font-size: 1.25rem;
 }
 
 
 @media (min-width: 992px) {
+    .add-note {
+        font-size: 1rem;
+    }
+
     img {
         max-height: 170px;
     }
