@@ -12,7 +12,7 @@ html, body {
   height: 100%;
 }
 
-main {
+main, .content-body {
   flex: 1 0 auto;
 }
 
@@ -149,11 +149,6 @@ nav li {
     margin: auto;
 }
 
-.searchBar label {
-    padding-right: 1rem;
-    padding-top: .5rem;
-}
-
 .searchBar select {
    margin-right: 0.5rem;
    border-color: lightgray;
@@ -166,18 +161,9 @@ nav li {
     padding-top: 2rem;
 }
 
-.addSubject label {
-    padding-bottom: .5rem;
-}
-
 .addButton {
     display:flex;
     justify-content: right;
-}
-
-.buttonStyle {
-    color: white;
-    background-color: #2D4E7B;
 }
 
 .card h2 {
@@ -211,48 +197,71 @@ nav li {
     padding-bottom: 3rem;
 }
 
-#timer-page {
+@media (min-width: 598px) {
+    #hamburger-menu {
+        display: block;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+    
+}
+
+@media (min-width: 992px) {
+    img {
+        max-height: 170px;
+    }
+
+    nav li {
+        font-size: 1.3rem;
+    }
+
+    html {
+        height: 100%;
+    }
+}
+
+.timer-page {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 8rem; 
+    margin-top: 8rem;
     gap: 8rem;
     padding: 1rem;
 }
 
 .timer {
-    text-align: center; 
-}   
+    text-align: center;
+}
 
 .timer-circle {
-    width: 300px; 
-    height: 300px; 
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
     border: 15px solid #ff6b6b;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto; 
-    margin-bottom: 2rem; 
+    margin: 0 auto;
+    margin-bottom: 2rem;
 }
 
-#timer-display {
-    font-size: 3rem; 
+.timer-display {
+    font-size: 3rem;
     font-weight: bold;
 }
 
 .timer-controls {
     display: flex;
-    justify-content: center; 
-    gap: 1rem; 
-    margin-top: 0; 
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0;
 }
 
 .timer-controls button {
-    width: 120px; 
+    width: 120px;
     padding: 0.7rem;
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -262,6 +271,25 @@ nav li {
 
 .timer-controls button:hover {
     background-color: #d6d6d6;
+}
+
+.timer-controls .timer-start-btn {
+    background-color: #2D4E7B;
+    color: white;
+}
+
+.timer-controls .timer-start-btn:hover {
+    background-color: #253D5E;
+}
+
+.timer-controls .timer-stop-btn {
+    background-color: #FF6347;	
+    ;
+    color: white;
+}
+
+.timer-controls .timer-stop-btn:hover {
+    background-color: #e55a5a;
 }
 
 .timer-customization {
@@ -293,6 +321,14 @@ nav li {
     border-radius: 4px;
 }
 
+.credits {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+}
+
+
 .folder-title {
     margin-top: 80px;
     margin-bottom: 10px;
@@ -303,6 +339,7 @@ nav li {
 
 .container {
     max-width: 1300px;
+    /* margin: auto 50px; */
 }
 
 .note {
@@ -352,27 +389,4 @@ nav li {
     justify-content: end;
     font-size: 14px;
     margin-top: 10px;
-}
-
-@media (min-width: 598px) {
-    #hamburger-menu {
-        display: block;
-        font-size: 2rem;
-        cursor: pointer;
-    }
-    
-}
-
-@media (min-width: 992px) {
-    img {
-        max-height: 170px;
-    }
-
-    nav li {
-        font-size: 1.3rem;
-    }
-
-    html {
-        height: 100%;
-    }
 }
