@@ -190,6 +190,16 @@ nav li {
     text-align: center;
 }
 
+.cardText {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete {
+    font-size: 30px;
+    color: rgb(67, 67, 67);
+}
+
 .credits {
     display: flex;
     justify-content: center;
