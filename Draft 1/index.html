@@ -18,7 +18,7 @@
         <nav class="navbar navbar-expand-md navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="img/6585301_books_education_learning_school_study_icon.png" width="20" height="20" alt="Home" aria-label="logo">
+                    <img src="img/6585301_books_education_learning_school_study_icon.png" width="20" height="20" alt="Home">
                     FocusFlow
                 </a>
         
@@ -53,18 +53,24 @@
                         <div class="row align-items-center">
                             <div class="col-sm-auto col-xl-12 mb-xl-3">
                                 <h2>To-Do Today:</h2>
-                                <form action="/action_page.php">
-                                    <input type="checkbox" id="today1" name="today1" value="notes">
-                                    <label for="today1"> Take INFO 340 notes</label><br>
-                                    <input type="checkbox" id="today2" name="today2" value="lecture">
-                                    <label for="today2"> Watch lecture</label><br>
-                                    <input type="checkbox" id="today3" name="today3" value="notes">
-                                    <label for="today3"> Review INFO 340 notes</label><br>
+                                <form>
+                                    <p>
+                                        <input type="checkbox" id="today1" name="today1" value="notes">
+                                        <label for="today1"> Take INFO 340 notes</label>
+                                    </p>
+                                    <p>
+                                        <input type="checkbox" id="today2" name="today2" value="lecture">
+                                        <label for="today2"> Watch lecture</label>
+                                    </p>
+                                    <p>
+                                        <input type="checkbox" id="today3" name="today3" value="notes">
+                                        <label for="today3"> Review INFO 340 notes</label>
+                                    </p>
                                 </form>
                             </div>
                             <div class="col-xl-12">
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar" role="progressbar"></div>
                                 </div>
                             </div>
                         </div>
@@ -76,11 +82,15 @@
                         <div class="row align-items-center">
                             <div class="col-sm-auto col-xl-12 mb-xl-3">
                                 <h2>Work To-Do:</h2>
-                                <form action="/action_page.php">
-                                    <input type="checkbox" id="todo1" name="today1" value="notes">
-                                    <label for="today1"> Change shift</label><br>
-                                    <input type="checkbox" id="todo2" name="today2" value="lecture">
-                                    <label for="today2"> Email boss by EOD</label><br>
+                                <form>
+                                    <p>
+                                        <input type="checkbox" id="todo1" name="today1" value="notes">
+                                        <label for="todo1"> Change shift</label>
+                                    </p>
+                                    <p>
+                                        <input type="checkbox" id="todo2" name="today2" value="lecture">
+                                        <label for="todo2"> Email boss by EOD</label>
+                                    </p>
                                 </form>
                             </div>
                         </div>
@@ -92,13 +102,19 @@
                         <div class="row align-items-center">
                             <div class="col-sm-auto col-xl-12 mb-xl-3">
                                 <h2>INFO 340 To-Do:</h2>
-                                <form action="/action_page.php">
-                                    <input type="checkbox" id="todo3" name="today1" value="notes">
-                                    <label for="today1"> Finish problem set</label><br>
-                                    <input type="checkbox" id="todo4" name="today2" value="lecture">
-                                    <label for="today2"> Attend office hours</label><br>
-                                    <input type="checkbox" id="todo5" name="today3" value="notes">
-                                    <label for="today3"> Debug code</label><br>
+                                <form>
+                                    <p>
+                                        <input type="checkbox" id="todo3" name="today1" value="notes">
+                                        <label for="todo3"> Finish problem set</label>
+                                    </p>
+                                    <p>
+                                        <input type="checkbox" id="todo4" name="today2" value="lecture">
+                                        <label for="todo4"> Attend office hours</label>
+                                    </p>
+                                    <p>
+                                        <input type="checkbox" id="todo5" name="today3" value="notes">
+                                        <label for="todo5"> Debug code</label>
+                                    </p>
                                 </form>
                             </div>
                         </div>
@@ -106,19 +122,33 @@
                 </div>
             </div>
         </div>
+        <section class="add-task">
+            <div class="container">
+                <h2>Add a New Task</h2>
+                <form id="todo-form" class="add-element">
+                    <input type="text" id="new-task" placeholder="Enter your next task..." required>
+                    <select id="task-list" class="footer-element">
+                        <option value="today-list">To-Do Today</option>
+                        <option value="work-list">Work To-Do</option>
+                        <option value="work-list">INFO 340 To-Do</option>
+                    </select>
+                    <button type="submit" class="footer-element btn buttonStyle">Add Task</button>
+                </form>
+            </div>
+        </section>
+        <section class="add-task">
+            <div class="container">
+                <h2>Create a New List</h2>
+                <form id="todo-form" class="add-element">
+                    <input type="text" id="list-name" placeholder="Enter your list name..." required>
+                    <button type="submit" class="add-element btn buttonStyle">Create</button>
+                </form>
+            </div>
+        </section>
         <footer>
-            <section class="add-task">
-                <div class="container">
-                    <h2>Add a New Task</h2>
-                    <form id="todo-form" class="footer-element">
-                        <input type="text" id="new-task" placeholder="Enter your next task..." required>
-                        <select id="task-list" class="footer-element">
-                            <option value="today-list">To-Do Today</option>
-                            <option value="work-list">Work To-Do</option>
-                            <option value="work-list">INFO 340 To-Do</option>
-                        </select>
-                        <button type="submit" class="footer-element btn buttonStyle">Add Task</button>
-                    </form>
+            <section class="past-tasks">
+                <div class="container text-center mt-4">
+                    <button type="button" class="btn btn-secondary buttonStyle">View Past Tasks</button>
                 </div>
             </section>
         </footer>

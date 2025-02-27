@@ -44,6 +44,10 @@ h1 {
     width: 100%;
 }
 
+.progress-bar {
+    width: 30%;
+}
+
 .todo-list {
     width: 100%;
     max-width: 400px; 
@@ -80,13 +84,11 @@ h1 {
     
 }
 
-.add-task .footer-element {
+.add-task .add-element {
     margin-right: 1rem;
     margin-left: 1rem;
     margin-top: 1rem;
 }
-
-
 
 nav {
     position: fixed;
