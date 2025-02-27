@@ -216,21 +216,6 @@ nav li {
     padding-bottom: 3rem;
 }
 
-
-@media (min-width: 992px) {
-    img {
-        max-height: 170px;
-    }
-
-    nav li {
-        font-size: 1.3rem;
-    }
-
-    html {
-        height: 100%;
-    }
-}
-
 .timer-page {
     display: flex;
     flex-wrap: wrap;
@@ -399,6 +384,20 @@ nav li {
     font-size: 14px;
     margin-top: 10px;
     font-size: 1.25rem;
+}
+
+@media (min-width: 992px) {
+    img {
+        max-height: 170px;
+    }
+
+    nav li {
+        font-size: 1.3rem;
+    }
+
+    html {
+        height: 100%;
+    }
 }
 
 @media (min-width: 598px) {
