@@ -1,9 +1,13 @@
+import { SubjectCardList } from "./components/SubjectCardList";
 
-function App() {
+function App(props) {
 
   return (
-    <h1>hello world</h1>
+    // <Routes>
+    //   <Route path="/" element={ <SubjectCardList /> } />
+    // </Routes>
+    <SubjectCardList />
   )
 }
 
-export default App
+export default App;

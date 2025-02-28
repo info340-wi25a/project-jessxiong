@@ -1,0 +1,428 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans';
+    display: flex;
+    flex-direction: column;
+}
+
+html, body {
+  height: 100%;
+}
+
+main, .content-body {
+  flex: 1 0 auto;
+}
+
+main {
+    margin-top: 3rem;
+    padding: 2rem;
+}
+
+h1 {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.home-icon {
+    width: 10px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    border: none;
+}
+
+.progress {
+    width: 100%;
+}
+
+.progress-bar {
+    width: 30%;
+}
+
+.todo-list {
+    width: 100%;
+    max-width: 400px; 
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 5px solid;
+    border-color: #d1e5f4;
+}
+
+
+.today-list {
+    border: 10px solid;
+    border-color: #ffe5f1;
+}
+
+.add-task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 2px solid lightyellow; 
+    border-radius: 8px;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.add-task .add-element {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+    color: #2D4E7B;
+    padding: 1rem;
+    padding-bottom: 1rem;
+    z-index: 1000;
+}
+
+nav ul {
+    padding: 0;
+    margin: 0;
+
+}
+
+nav li {
+    display: inline;
+    padding: 0;
+    margin: 0 1rem;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #2D4E7B;
+}
+
+.navbar-nav .nav-link {
+    color: #2D4E7B;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #17263A;
+}
+
+.progress-bar {
+    background-color: #FFD1E9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
+}
+
+.card .subject {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.searchBar {
+    display: flex;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    max-width: 75%;
+    margin: auto;
+}
+
+.searchBar select {
+   margin-right: 0.5rem;
+   border-color: lightgray;
+   border-radius: 8px;
+   padding: .5rem;
+}
+
+.searchBar label {
+    padding-right: 1rem;
+    padding-top: .5rem;
+}
+
+.addSubject {
+    padding-bottom: 3.5rem;
+    padding-top: 2rem;
+}
+
+.addSubject label {
+    padding-bottom: .5rem;
+}
+
+.addButton {
+    display:flex;
+    justify-content: right;
+}
+
+.buttonStyle {
+    background-color: #2D4E7B;
+    color: white;
+}
+
+.card h2 {
+    font-size: 2rem;
+    text-align: center;
+    padding: 0;
+    color:black;
+}
+
+.card a {
+    text-decoration: none;
+}
+
+.card .addCard {
+    text-align: center;
+}
+
+.cardText {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete {
+    font-size: 30px;
+    color: rgb(67, 67, 67);
+}
+
+.credits {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    background-color: gainsboro;
+    padding: 1rem;
+}
+
+.credits p {
+    padding-bottom: 0;
+}
+
+.content-body {
+    padding-bottom: 3rem;
+}
+
+.timer-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 8rem;
+    gap: 8rem;
+    padding: 1rem;
+}
+
+.timer {
+    text-align: center;
+}
+
+.timer-circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 15px solid #ff6b6b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+.timer-display {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0;
+}
+
+.timer-controls button {
+    width: 120px;
+    padding: 0.7rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    transition: background-color 0.2s ease;
+}
+
+.timer-controls button:hover {
+    background-color: #d6d6d6;
+}
+
+.timer-controls .timer-start-btn {
+    background-color: #2D4E7B;
+    color: white;
+}
+
+.timer-controls .timer-start-btn:hover {
+    background-color: #253D5E;
+}
+
+.timer-controls .timer-stop-btn {
+    background-color: #FF6347;	
+    color: white;
+}
+
+.timer-controls .timer-stop-btn:hover {
+    background-color: #e55a5a;
+}
+
+.timer-customization {
+    text-align: left;
+    max-width: 400px;
+    flex: 1 1 auto;
+}
+
+.timer-customization h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.timer-input {
+    margin-bottom: 1rem;
+}
+
+.timer-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.timer-input input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.credits {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+}
+
+
+.folder-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1300px;
+    /* margin: auto 50px; */
+}
+
+.note {
+    background-color: #d1e5f4;
+    padding: 20px;
+    padding-bottom: 50px;
+    border-radius: 10px;
+}
+
+.title, .content {
+    width: 100%;
+    border: 1px solid rgb(155, 155, 155);
+    border-radius: 5px;
+    background: none;
+    outline: none;
+    margin: 10px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.content {
+    margin-left: 10px;
+    flex-grow: 1;
+    font-size: 1rem;
+    min-height: 150px;
+    height: auto;
+    line-height: 1.5;
+    border-bottom: 1px solid black;
+    display: block;
+}
+
+::placeholder {
+    color: rgb(55, 55, 55);
+}
+
+.add-image {
+    position: absolute;
+    right: 0;
+    font-size: 14px;
+    margin-top: 7px;
+}
+
+.add-note {
+    display: flex;
+    justify-content: end;
+    font-size: 14px;
+    margin-top: 10px;
+    font-size: 1.25rem;
+}
+
+@media (min-width: 992px) {
+    img {
+        max-height: 170px;
+    }
+
+    nav li {
+        font-size: 1.3rem;
+    }
+
+    html {
+        height: 100%;
+    }
+}
+
+@media (min-width: 598px) {
+    .add-note {
+        display: flex;
+        justify-content: center;
+    }
+    .add-note .btn {
+        width: 300px;
+        height: 50px;
+    }
+}
+
+@media (min-width: 992px) {
+    .add-note {
+        font-size: 1rem;
+    }
+
+    img {
+        max-height: 170px;
+    }
+
+    nav li {
+        font-size: 1.3rem;
+    }
+}
