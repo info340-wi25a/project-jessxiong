@@ -5,7 +5,7 @@ import { Routes, Route, Link } from 'react-router';
 import Navbar from './NavBar.jsx';
 import Home from './Home.jsx';
 
-import { SubjectCardList } from "./SubjectCardList.jsx";
+import { SubjectNotesPage } from "./SubjectNotesPage.jsx";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         {/* <Route path="/timer" element={<Timer />} />
         <Route path="/notes" element={<Notes />} /> */}
-        <Route path="/" element={ <SubjectCardList /> } />
+        <Route path="/subject" element={ <SubjectNotesPage /> } />
       </Routes>
       <footer className="credits">
         <p>Favicon from Icon Finder ©</p>
