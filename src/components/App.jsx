@@ -6,6 +6,7 @@ import Home from './Home.jsx';
 
 import { SubjectNotesPage } from "./SubjectNotesPage.jsx";
 import { IndividualNotesPage } from './IndividualNotesPage.jsx';
+import { EditNote } from "./EditNote.jsx";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <Route path=":cardtitle" element={<IndividualNotesPage titleNames={noteNames}/>} />
         </Route>
        <Route path="/individual" element={ <IndividualNotesPage titleNames={noteNames} /> } />
+       <Route path="/edit" element={ <EditNote /> } />
       </Routes>
       <footer className="credits">
         <p>Favicon from Icon Finder ©</p>
