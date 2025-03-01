@@ -19,7 +19,9 @@ function App() {
         <Route path="/" element={<Home />} />
         {/* <Route path="/timer" element={<Timer />} />
         <Route path="/notes" element={<Notes />} /> */}
-        <Route path="/subject" element={ <SubjectNotesPage titleNames={subjectNames} /> } />
+        <Route path="/subject" element={ <SubjectNotesPage titleNames={subjectNames} />} >
+            <Route path=":cardtitle" element={<IndividualNotesPage titleNames={noteNames}/>} />
+        </Route>
        <Route path="/individual" element={ <IndividualNotesPage titleNames={noteNames} /> } />
       </Routes>
       <footer className="credits">
