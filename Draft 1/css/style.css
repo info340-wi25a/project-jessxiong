@@ -44,6 +44,10 @@ h1 {
     width: 100%;
 }
 
+.progress-bar {
+    width: 30%;
+}
+
 .todo-list {
     width: 100%;
     max-width: 400px; 
@@ -80,13 +84,11 @@ h1 {
     
 }
 
-.add-task .footer-element {
+.add-task .add-element {
     margin-right: 1rem;
     margin-left: 1rem;
     margin-top: 1rem;
 }
-
-
 
 nav {
     position: fixed;
@@ -214,21 +216,6 @@ nav li {
 
 .content-body {
     padding-bottom: 3rem;
-}
-
-
-@media (min-width: 992px) {
-    img {
-        max-height: 170px;
-    }
-
-    nav li {
-        font-size: 1.3rem;
-    }
-
-    html {
-        height: 100%;
-    }
 }
 
 .timer-page {
@@ -399,6 +386,20 @@ nav li {
     font-size: 14px;
     margin-top: 10px;
     font-size: 1.25rem;
+}
+
+@media (min-width: 992px) {
+    img {
+        max-height: 170px;
+    }
+
+    nav li {
+        font-size: 1.3rem;
+    }
+
+    html {
+        height: 100%;
+    }
 }
 
 @media (min-width: 598px) {
