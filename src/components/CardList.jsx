@@ -61,7 +61,7 @@ function CardSubject(props) {
             <img className="pb-3 card-img-top" src="../img/NotesCover.jpg" alt={props.title} />
         </Link>
             <div className="card-body subject">
-                <div className="cardText">
+                <div className="card-text">
                     <h2 className="card-title"> {props.title} </h2>
                     <MdDelete className="delete" onClick={handleClick} />
                 </div>
@@ -89,7 +89,7 @@ function CardNotes(props) {
                 <img className="pb-3 card-img-top" src="../img/NotesCover.jpg" alt={props.title} />
             </Link>
             <div className="card-body subject">
-                <div className="cardText">
+                <div className="card-text">
                     <h2 className="card-title"> {props.title} </h2>
                     <MdDelete className="delete" onClick={handleClick}/>
                 </div>
@@ -107,13 +107,13 @@ export function AddCardSubject(props) {
         <div className="col-sm-12 col-lg-3">
             <div className="card h-100">
                 <div className="card-body subject">
-                    <h2 className="card-title addCard"> Add a New Card </h2>
-                    <form className="footer-element addSubject">
-                        <label for="subject_name">Title: </label>
-                        <input className="SubjectName form-control me-2" type="text" placeholder="Enter..." value={newSubject} onChange={handleInputAddCard}/>
+                    <h2 className="card-title add-card"> Add a New Card </h2>
+                    <form className="footer-element add-subject">
+                        <label htmlFor="subject_name">Title: </label>
+                        <input className="SubjectName form-control me-2" id="subject_name" type="text" placeholder="Enter..." value={newSubject} onChange={handleInputAddCard} required/>
                     </form>
-                    <div className="addButton">
-                        <button type="submit" class="addButton btn buttonStyle" onClick={handleAddSubjectClick}>Add</button>
+                    <div className="add-button">
+                        <button type="submit" className="add-button btn button-style" onClick={handleAddSubjectClick}>Add</button>
                     </div>
                 </div>
             </div>
@@ -128,13 +128,13 @@ export function AddCardNotes(props) {
         <div className="col-sm-12 col-lg-3">
             <div className="card h-100">
                 <div className="card-body subject">
-                    <h2 className="card-title addCard"> Add a New Card </h2>
-                    <form className="footer-element addSubject">
-                        <label for="subject_name">Title: </label>
-                        <input className="SubjectName form-control me-2" type="text" placeholder="Enter..." value={newNote} onChange={handleInputAddNoteCard}/>
+                    <h2 className="card-title add-card"> Add a New Card </h2>
+                    <form className="footer-element add-subject">
+                        <label htmlFor="subject_name">Title: </label>
+                        <input className="SubjectName form-control me-2" id="subject_name" type="text" placeholder="Enter..." value={newNote} onChange={handleInputAddNoteCard} required/>
                     </form>
-                    <div className="addButton">
-                        <button type="submit" class="addButton btn buttonStyle" onClick={handleAddNoteClick}>Add</button>
+                    <div className="add-button">
+                        <button type="submit" className="add-button btn button-style" onClick={handleAddNoteClick}>Add</button>
                     </div>
                 </div>
             </div>

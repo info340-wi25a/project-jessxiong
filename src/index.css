@@ -145,41 +145,47 @@ nav li {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.searchBar {
+.searchbar {
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-end;
     padding-bottom: 2rem;
     padding-top: 2rem;
     max-width: 75%;
     margin: auto;
 }
 
-.searchBar select {
+.searchbar select {
    margin-right: 0.5rem;
    border-color: lightgray;
    border-radius: 8px;
    padding: .5rem;
+   margin-bottom: 1rem;
+   margin-top: 1rem;
 }
 
-.searchBar label {
+.searchbar label {
     padding-right: 1rem;
     padding-top: .5rem;
+    margin-bottom: 1rem;
 }
 
-.addSubject {
+.add-subject {
     padding-bottom: 3.5rem;
     padding-top: 2rem;
 }
 
-.addSubject label {
+.add-subject label {
     padding-bottom: .5rem;
 }
 
-.addButton {
+.add-button {
     display:flex;
     justify-content: right;
 }
 
-.buttonStyle {
+.button-style {
     background-color: #2D4E7B;
     color: white;
 }
@@ -195,11 +201,11 @@ nav li {
     text-decoration: none;
 }
 
-.card .addCard {
+.card .add-card {
     text-align: center;
 }
 
-.cardText {
+.card-text {
     display: flex;
     justify-content: space-between;
 }
@@ -395,19 +401,6 @@ nav li {
     font-size: 1.25rem;
 }
 
-@media (min-width: 992px) {
-    img {
-        max-height: 170px;
-    }
-
-    nav li {
-        font-size: 1.3rem;
-    }
-
-    html {
-        height: 100%;
-    }
-}
 
 @media (min-width: 598px) {
     .add-note {
@@ -418,11 +411,30 @@ nav li {
         width: 300px;
         height: 50px;
     }
+
 }
 
 @media (min-width: 992px) {
     .add-note {
         font-size: 1rem;
+    }
+
+    .searchbar {
+        flex-wrap: nowrap;
+        flex-direction: row;
+    }
+    
+    .searchbar select {
+        margin-bottom: 0rem;
+        margin-top: 0rem;
+    }
+
+    .searchbar label {
+        margin-bottom: 0rem;
+    }
+
+    html {
+        height: 100%;
     }
 
     img {

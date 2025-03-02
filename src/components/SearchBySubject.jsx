@@ -21,14 +21,14 @@ export function SearchBySubject(props) {
     
     return (
         <div className="container">
-            <form className="searchBar">
-                <label for="search keyword">Search: </label>
-                <input className="form-control me-2" type="search" placeholder="Type keyword.." value={userKeyword} onChange={handleInput}/>
+            <form className="searchbar">
+                <label htmlFor="search keyword">Search: </label>
+                <input className="form-control me-2"id="search keyword" type="search" placeholder="Type keyword.." value={userKeyword} onChange={handleInput}/>
                 <select onChange={handleSelect}>
                     <option key="none">none</option>
                     {optionsArray}
                 </select>
-                <button className="btn buttonStyle" type="submit" onClick={handleClick}>Search</button>
+                <button className="btn button-style" type="submit" onClick={handleClick}>Search</button>
             </form>
         </div>
     )
