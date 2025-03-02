@@ -5,7 +5,7 @@ import { CardListSubject  } from "./CardList.jsx";
 import { SearchBySubject } from "./SearchBySubject.jsx";
 
 export function SubjectNotesPage(props) {    
-    const {titleNames, newSubject, handleAddSubjectClick, handleInputAddCard} = props;
+    const {titleNames, newSubject, handleAddSubjectClick, handleInputAddCard, handleDelete} = props;
     
     const [selected, setSelected] = useState('');
     const [userKeyword, setUserKeyword] = useState('');
@@ -43,6 +43,7 @@ export function SubjectNotesPage(props) {
     }
 
 
+
     return (
         <div>
             <h1>Subjects</h1>
@@ -59,6 +60,7 @@ export function SubjectNotesPage(props) {
             newSubject={newSubject}
             handleAddSubjectClick={handleAddSubjectClick}
             handleInputAddCard={handleInputAddCard}
+            handleDelete={handleDelete}
             />
         </div>
     )

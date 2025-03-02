@@ -11,9 +11,13 @@ import { Help } from "./Help.jsx";
 
 function App() {
   const initialSubjectList = ["INFO340", "INFO360", "INFO380", "CSE373", "CSE414"];
+  const initialNoteNames = ["Lecture1", "Assignment1", "Exam 1", "Exam2", "Final Project"];
   const [subjectNames, setSubjectNames] = useState(initialSubjectList);
   const [newSubject, setNewSubject] = useState("");
-  const noteNames = ["Lecture1", "Assignment1", "Exam 1", "Exam2", "Final Project"];
+  const [noteNames, setNoteNames] = useState(initialNoteNames);
+  const [newNote, setNewNote] = useState('');
+
+  console.log(noteNames);
 
   const handleAddSubjectClick = (event) => {
     event.preventDefault();
@@ -21,8 +25,28 @@ function App() {
     setNewSubject('');
   }
 
+  const handleAddNoteClick = (event) => {
+    event.preventDefault();
+    setNoteNames( (originalList) => [...originalList, newNote]);
+    setNewNote('');
+  }
+
   const handleInputAddCard = (event) => {
     setNewSubject(event.target.value);
+  }
+
+  const handleInputAddNoteCard = (event) => {
+    setNewNote(event.target.value);
+  }
+
+  const handleDeleteSubject = (subjectToDelete) => {
+    setSubjectNames((originalList) => 
+      originalList.filter((subject) => subject !== subjectToDelete))
+  }
+
+  const handleDeleteNote = (noteToDelete) => {
+    setNoteNames((originalList) => 
+      originalList.filter((note) => note !== noteToDelete))
   }
 
   return (
@@ -37,10 +61,15 @@ function App() {
           newSubject={newSubject}
           handleAddSubjectClick={handleAddSubjectClick}
           handleInputAddCard={handleInputAddCard}
-          />} >
-            {/* <Route path=":cardtitle" element={<IndividualNotesPage titleNames={noteNames}/>} /> */}
-        </Route>
-       <Route path="/subject/:cardtitle" element={ <IndividualNotesPage titleNames={noteNames} /> } />
+          handleDelete={handleDeleteSubject}
+          />} ></Route>
+       <Route path="/subject/:cardtitle" element={ <IndividualNotesPage 
+          titleNames={noteNames} 
+          newNote={newNote}
+          handleAddNoteClick={handleAddNoteClick}
+          handleInputAddNoteCard={handleInputAddNoteCard}
+          handleDeleteNote={handleDeleteNote}
+       /> } />
        <Route path="/edit" element={ <EditNote /> } />
        <Route path="/help" element={ <Help /> } />
       </Routes>
