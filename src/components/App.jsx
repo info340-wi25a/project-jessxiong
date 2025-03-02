@@ -12,7 +12,18 @@ import { Help } from "./Help.jsx";
 function App() {
   const initialSubjectList = ["INFO340", "INFO360", "INFO380", "CSE373", "CSE414"];
   const [subjectNames, setSubjectNames] = useState(initialSubjectList);
+  const [newSubject, setNewSubject] = useState("");
   const noteNames = ["Lecture1", "Assignment1", "Exam 1", "Exam2", "Final Project"];
+
+  const handleAddSubjectClick = (event) => {
+    event.preventDefault();
+    setSubjectNames( (originalList) => [...originalList, newSubject]);
+    setNewSubject('');
+  }
+
+  const handleInputAddCard = (event) => {
+    setNewSubject(event.target.value);
+  }
 
   return (
     <div className="App">
@@ -21,7 +32,14 @@ function App() {
         <Route path="/" element={<Home />} />
         {/* <Route path="/timer" element={<Timer />} />
         <Route path="/notes" element={<Notes />} /> */}
-        <Route path="/subject" element={ <SubjectNotesPage titleNames={subjectNames} />} >
+        <Route path="/subject" element={ <SubjectNotesPage 
+          titleNames={subjectNames} 
+          newSubject={newSubject}
+          handleAddSubjectClick={handleAddSubjectClick}
+          handleInputAddCard={handleInputAddCard}
+          />} >
+
+
             <Route path=":cardtitle" element={<IndividualNotesPage titleNames={noteNames}/>} />
         </Route>
        <Route path="/individual" element={ <IndividualNotesPage titleNames={noteNames} /> } />

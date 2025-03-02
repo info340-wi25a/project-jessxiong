@@ -6,6 +6,8 @@ import { MdDelete } from "react-icons/md";
 
 
 export function CardList(props) {
+    const {newSubject, handleAddSubjectClick, handleInputAddCard} = props;
+    
     const cardTitleArray = props.titleNames.map((name) => {
         const transformed = (<Card key={name} title={name} />);
         return transformed
@@ -16,7 +18,7 @@ export function CardList(props) {
         <div className="container">
             <div className="row">
                 {cardTitleArray}
-                <AddCard />
+                <AddCard newSubject={newSubject} handleAddSubjectClick={handleAddSubjectClick} handleInputAddCard={handleInputAddCard} />
             </div>
         </div>
     )
@@ -47,7 +49,8 @@ function Card(props) {
 }
 
 export function AddCard(props) {
-    
+    const {newSubject, handleAddSubjectClick, handleInputAddCard} = props;
+
     return (
         <div className="col-sm-12 col-lg-3">
             <div className="card h-100">
@@ -55,10 +58,10 @@ export function AddCard(props) {
                     <h2 className="card-title addCard"> Add a New Card </h2>
                     <form className="footer-element addSubject">
                         <label for="subject_name">Title: </label>
-                        <input className="SubjectName form-control me-2" type="text" placeholder="Enter..." />
+                        <input className="SubjectName form-control me-2" type="text" placeholder="Enter..." value={newSubject} onChange={handleInputAddCard}/>
                     </form>
                     <div className="addButton">
-                        <button type="submit" class="addButton btn buttonStyle">Add</button>
+                        <button type="submit" class="addButton btn buttonStyle" onClick={handleAddSubjectClick}>Add</button>
                     </div>
                 </div>
             </div>

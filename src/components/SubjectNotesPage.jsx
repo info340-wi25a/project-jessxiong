@@ -5,6 +5,8 @@ import { CardList  } from "./CardList.jsx";
 import { SearchBySubject } from "./SearchBySubject.jsx";
 
 export function SubjectNotesPage(props) {    
+    const {titleNames, newSubject, handleAddSubjectClick, handleInputAddCard} = props;
+    
     const [selected, setSelected] = useState('');
     const [userKeyword, setUserKeyword] = useState('');
     console.log(selected, userKeyword);
@@ -52,7 +54,12 @@ export function SubjectNotesPage(props) {
             handleInput={handleInput}
             applyFilter={applyFilter}
             />
-            <CardList titleNames={displayedCards} />
+            <CardList 
+            titleNames={displayedCards} 
+            newSubject={newSubject}
+            handleAddSubjectClick={handleAddSubjectClick}
+            handleInputAddCard={handleInputAddCard}
+            />
         </div>
     )
 }
