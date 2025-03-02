@@ -29,6 +29,10 @@ h1 {
     text-align: center;
 }
 
+.instructions {
+    padding : 4.5rem;
+}
+
 .home-icon {
     width: 10px;
 }

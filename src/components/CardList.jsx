@@ -5,9 +5,11 @@ import { MdDelete } from "react-icons/md";
 
 
 
-export function CardList(props) {
+export function CardListSubject(props) {
+    const {newSubject, handleAddSubjectClick, handleInputAddCard, handleDelete} = props;
+    
     const cardTitleArray = props.titleNames.map((name) => {
-        const transformed = (<Card key={name} title={name} />);
+        const transformed = (<CardSubject key={name} title={name} handleDelete={handleDelete} />);
         return transformed
     })
 
@@ -16,38 +18,91 @@ export function CardList(props) {
         <div className="container">
             <div className="row">
                 {cardTitleArray}
-                <AddCard />
+                <AddCardSubject newSubject={newSubject} handleAddSubjectClick={handleAddSubjectClick} handleInputAddCard={handleInputAddCard} />
             </div>
         </div>
     )
 }
 
-function Card(props) {
+export function CardListNotes(props) {
+    const {newNote, handleAddNoteClick, handleInputAddNoteCard, handleDelete} = props;
+    
+    const cardTitleArray = props.titleNames.map((name) => {
+        const transformed = (<CardNotes key={name} title={name} handleDelete={handleDelete} />);
+        return transformed
+    })
+
+
+    return(
+        <div className="container">
+            <div className="row">
+                {cardTitleArray}
+                <AddCardNotes newNote={newNote} handleAddNoteClick={handleAddNoteClick} handleInputAddNoteCard={handleInputAddNoteCard} />
+            </div>
+        </div>
+    )
+}
+
+function CardSubject(props) {
     // let imgURL = "img/" + props.name;
     // imgURL += "Cover.jpg";
     let cardURL = "/subject/" + props.title;
+    
+
+    const handleClick = (event) => {
+        props.handleDelete(props.title)
+    }
     
     //console.log(imgURL)
     return (
     <div className="col-sm-12 col-lg-3">
         <div className="card h-100">
-            <Link to={cardURL}>
+        <Link to={cardURL}>
             <img className="pb-3 card-img-top" src="../img/NotesCover.jpg" alt={props.title} />
+        </Link>
             <div className="card-body subject">
                 <div className="cardText">
                     <h2 className="card-title"> {props.title} </h2>
-                    <MdDelete className="delete" />
+                    <MdDelete className="delete" onClick={handleClick} />
                 </div>
             </div>
-            </Link>
         </div>
     </div>
 
     )
 }
 
-export function AddCard(props) {
+function CardNotes(props) {
+    // let imgURL = "img/" + props.name;
+    // imgURL += "Cover.jpg";
+    let cardURL = "/subject/" + props.title + "/edit";
+
+    const handleClick = (event) => {
+        props.handleDelete(props.title)
+    }
     
+    //console.log(imgURL)
+    return (
+    <div className="col-sm-12 col-lg-3">
+        <div className="card h-100">
+            <Link to={cardURL}>
+                <img className="pb-3 card-img-top" src="../img/NotesCover.jpg" alt={props.title} />
+            </Link>
+            <div className="card-body subject">
+                <div className="cardText">
+                    <h2 className="card-title"> {props.title} </h2>
+                    <MdDelete className="delete" onClick={handleClick}/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    )
+}
+
+export function AddCardSubject(props) {
+    const {newSubject, handleAddSubjectClick, handleInputAddCard} = props;
+
     return (
         <div className="col-sm-12 col-lg-3">
             <div className="card h-100">
@@ -55,10 +110,31 @@ export function AddCard(props) {
                     <h2 className="card-title addCard"> Add a New Card </h2>
                     <form className="footer-element addSubject">
                         <label for="subject_name">Title: </label>
-                        <input className="SubjectName form-control me-2" type="text" placeholder="Enter..." />
+                        <input className="SubjectName form-control me-2" type="text" placeholder="Enter..." value={newSubject} onChange={handleInputAddCard}/>
                     </form>
                     <div className="addButton">
-                        <button type="submit" class="addButton btn buttonStyle">Add</button>
+                        <button type="submit" class="addButton btn buttonStyle" onClick={handleAddSubjectClick}>Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export function AddCardNotes(props) {
+    const {newNote, handleAddNoteClick, handleInputAddNoteCard} = props;
+
+    return (
+        <div className="col-sm-12 col-lg-3">
+            <div className="card h-100">
+                <div className="card-body subject">
+                    <h2 className="card-title addCard"> Add a New Card </h2>
+                    <form className="footer-element addSubject">
+                        <label for="subject_name">Title: </label>
+                        <input className="SubjectName form-control me-2" type="text" placeholder="Enter..." value={newNote} onChange={handleInputAddNoteCard}/>
+                    </form>
+                    <div className="addButton">
+                        <button type="submit" class="addButton btn buttonStyle" onClick={handleAddNoteClick}>Add</button>
                     </div>
                 </div>
             </div>
