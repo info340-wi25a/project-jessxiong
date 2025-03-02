@@ -7,6 +7,7 @@ import Home from './Home.jsx';
 import { SubjectNotesPage } from "./SubjectNotesPage.jsx";
 import { IndividualNotesPage } from './IndividualNotesPage.jsx';
 import { EditNote } from "./EditNote.jsx";
+import { Help } from "./Help.jsx";
 
 function App() {
   const initialSubjectList = ["INFO340", "INFO360", "INFO380", "CSE373", "CSE414"];
@@ -25,6 +26,7 @@ function App() {
         </Route>
        <Route path="/individual" element={ <IndividualNotesPage titleNames={noteNames} /> } />
        <Route path="/edit" element={ <EditNote /> } />
+       <Route path="/help" element={ <Help /> } />
       </Routes>
       <footer className="credits">
         <p>Favicon from Icon Finder ©</p>
