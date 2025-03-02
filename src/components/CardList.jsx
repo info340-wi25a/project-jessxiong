@@ -75,7 +75,7 @@ function CardSubject(props) {
 function CardNotes(props) {
     // let imgURL = "img/" + props.name;
     // imgURL += "Cover.jpg";
-    let cardURL = "/subject/" + props.title;
+    let cardURL = "/subject/" + props.title + "/edit";
 
     const handleClick = (event) => {
         props.handleDelete(props.title)
@@ -85,9 +85,9 @@ function CardNotes(props) {
     return (
     <div className="col-sm-12 col-lg-3">
         <div className="card h-100">
-            {/* <Link to={cardURL}> */}
-            <img className="pb-3 card-img-top" src="../img/NotesCover.jpg" alt={props.title} />
-            {/* </Link> */}
+            <Link to={cardURL}>
+                <img className="pb-3 card-img-top" src="../img/NotesCover.jpg" alt={props.title} />
+            </Link>
             <div className="card-body subject">
                 <div className="cardText">
                     <h2 className="card-title"> {props.title} </h2>

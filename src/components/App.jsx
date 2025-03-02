@@ -54,8 +54,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/timer" element={<Timer />} />
-        <Route path="/notes" element={<Notes />} /> */}
+        {/* <Route path="/timer" element={<Timer />} /> */}
         <Route path="/subject" element={ <SubjectNotesPage 
           titleNames={subjectNames} 
           newSubject={newSubject}
@@ -70,7 +69,7 @@ function App() {
           handleInputAddNoteCard={handleInputAddNoteCard}
           handleDeleteNote={handleDeleteNote}
        /> } />
-       <Route path="/edit" element={ <EditNote /> } />
+       <Route path="/subject/:cardtitle/edit" element={ <EditNote /> } />
        <Route path="/help" element={ <Help /> } />
       </Routes>
       <footer className="credits">
