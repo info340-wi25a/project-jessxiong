@@ -7,11 +7,10 @@ import Home from './Home.jsx';
 import { SubjectNotesPage } from "./SubjectNotesPage.jsx";
 import { IndividualNotesPage } from './IndividualNotesPage.jsx';
 import { EditNote } from "./EditNote.jsx";
-import { Help } from "./Help.jsx";
 
 function App() {
-
-  const subjectNames = ["INFO340", "INFO360", "INFO380", "CSE373", "CSE414"];
+  const initialSubjectList = ["INFO340", "INFO360", "INFO380", "CSE373", "CSE414"];
+  const [subjectNames, setSubjectNames] = useState(initialSubjectList);
   const noteNames = ["Lecture1", "Assignment1", "Exam 1", "Exam2", "Final Project"];
 
   return (
@@ -26,7 +25,6 @@ function App() {
         </Route>
        <Route path="/individual" element={ <IndividualNotesPage titleNames={noteNames} /> } />
        <Route path="/edit" element={ <EditNote /> } />
-       <Route path="/help" element={ <Help /> } />
       </Routes>
       <footer className="credits">
         <p>Favicon from Icon Finder ©</p>
