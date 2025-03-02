@@ -92,9 +92,20 @@ h1 {
 }
 
 .add-task .add-element {
-    margin-right: 1rem;
-    margin-left: 1rem;
-    margin-top: 1rem;
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: center;
+    gap: 1rem; 
+    width: 100%;
+    flex-wrap: wrap; 
+}
+
+.add-element button {
+    width: 100%; 
+    max-width: 150px;
+    padding: 0.5rem;
+    font-size: 1rem;
 }
 
 nav {
