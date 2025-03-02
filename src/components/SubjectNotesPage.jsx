@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-import { CardList  } from "./CardList.jsx";
+import { CardListSubject  } from "./CardList.jsx";
 import { SearchBySubject } from "./SearchBySubject.jsx";
 
 export function SubjectNotesPage(props) {    
@@ -54,7 +54,7 @@ export function SubjectNotesPage(props) {
             handleInput={handleInput}
             applyFilter={applyFilter}
             />
-            <CardList 
+            <CardListSubject 
             titleNames={displayedCards} 
             newSubject={newSubject}
             handleAddSubjectClick={handleAddSubjectClick}

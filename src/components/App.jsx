@@ -38,11 +38,9 @@ function App() {
           handleAddSubjectClick={handleAddSubjectClick}
           handleInputAddCard={handleInputAddCard}
           />} >
-
-
-            <Route path=":cardtitle" element={<IndividualNotesPage titleNames={noteNames}/>} />
+            {/* <Route path=":cardtitle" element={<IndividualNotesPage titleNames={noteNames}/>} /> */}
         </Route>
-       <Route path="/individual" element={ <IndividualNotesPage titleNames={noteNames} /> } />
+       <Route path="/subject/:cardtitle" element={ <IndividualNotesPage titleNames={noteNames} /> } />
        <Route path="/edit" element={ <EditNote /> } />
        <Route path="/help" element={ <Help /> } />
       </Routes>
