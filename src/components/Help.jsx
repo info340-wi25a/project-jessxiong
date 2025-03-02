@@ -20,6 +20,9 @@ export function Help() {
                 <li>
                     After clicking a subject card, you will be taken to "Notes for (Subject)" page where you can add, delete, and edit notes within the subject folder. You can search through your notes through date.
                 </li>
+                <li>
+                    If you click on existing files in the subject folder, you will be able to edit notes. And once you save the edits on the notes, you will be taken back to the subject folder and see the lists of notes again.
+                </li>
             </ul>
         </div>
     )
