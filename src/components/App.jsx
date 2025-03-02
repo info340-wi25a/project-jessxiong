@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router';
 import Navbar from './NavBar.jsx';
 import Home from './Home.jsx';
+import { Timer } from "./Timer.jsx";
+
 
 import { SubjectNotesPage } from "./SubjectNotesPage.jsx";
 import { IndividualNotesPage } from './IndividualNotesPage.jsx';
@@ -54,7 +56,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/timer" element={<Timer />} /> */}
+        <Route path="/timer" element={<Timer />} /> 
         <Route path="/subject" element={ <SubjectNotesPage 
           titleNames={subjectNames} 
           newSubject={newSubject}
