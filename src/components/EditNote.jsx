@@ -4,8 +4,8 @@ import { useParams, Link } from 'react-router';
 export function EditNote(props) {
 
 const {cardtitle, titleNames} = useParams();
-console.log({cardtitle})
-console.log({titleNames})
+// console.log({cardtitle})
+// console.log({titleNames})
 
     return (
         <section className="edit-note">
