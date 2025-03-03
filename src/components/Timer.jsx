@@ -82,10 +82,10 @@ export function Timer(props) {
         </div>
 
         <div className="timer-controls">
-          <button className="btn timer-stop-btn" onClick={resetTimer}>
+          <button className="btn button-style timer-stop-btn" onClick={resetTimer}>
             Reset
           </button>
-          <button className="btn timer-start-btn" onClick={toggleTimer}>
+          <button className="btn button-style timer-start-btn" onClick={toggleTimer}>
             {isRunning ? "Pause" : "Start"}
           </button>
         </div>
