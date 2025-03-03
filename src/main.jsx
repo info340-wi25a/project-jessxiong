@@ -6,10 +6,5 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
 import App from './components/App.jsx'
 
-// createRoot(document.getElementById('root')).render(
-//   //<BrowserRouter>
-//     <App />
-//   //</BrowserRouter>
-// )
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<BrowserRouter> <App /> </BrowserRouter>);

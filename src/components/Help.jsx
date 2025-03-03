@@ -6,7 +6,9 @@ export function Help() {
         <div className="instructions">
             <h1>About FocusFlow!</h1>
             <h2>To Do</h2>
-            <h3>Description for To Do</h3>
+                <p>
+                    Use the To-Do lists to keep track of your tasks for today, as well as create any kind of To-do list category you would like. Add tasks and create new lists as needed!
+                </p>
             <h2>Timer</h2>
                 <ul>
                     <li>

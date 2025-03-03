@@ -12,7 +12,7 @@ function CreateList() {
             placeholder="Enter your list name..."
             required
           />
-          <button type="submit" className="add-element btn buttonStyle">
+          <button type="submit" className="add-element btn button-style">
             Create
           </button>
         </form>

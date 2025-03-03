@@ -17,7 +17,7 @@ function AddTask() {
             <option value="work-list">Work To-Do</option>
             <option value="info-340-list">INFO 340 To-Do</option>
           </select>
-          <button type="submit" className="footer-element btn buttonStyle">
+          <button type="submit" className="footer-element btn button-style">
             Add Task
           </button>
         </form>
