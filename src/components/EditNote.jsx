@@ -3,9 +3,7 @@ import { useParams, Link } from 'react-router';
 
 export function EditNote(props) {
 
-const {cardtitle, titleNames} = useParams();
-// console.log({cardtitle})
-// console.log({titleNames})
+const {cardtitle, subjecttitle} = useParams();
 
     return (
         <section className="edit-note">
@@ -22,8 +20,9 @@ const {cardtitle, titleNames} = useParams();
                     </div>
                 </div>
                 <div className="add-note">
-                    <Link to={"/subject/" + {titleNames}}>
-                        <button className="btn buttonStyle" type="submit">Save Note</button>
+                    {/* <Link to={"/subject/" + cardtitle + "/" + subjecttitle}> */}
+                    <Link to={"/subject/" + cardtitle}>
+                        <button className="btn button-style" type="submit">Save Note</button>
                     </Link>
                 </div>
             </div>

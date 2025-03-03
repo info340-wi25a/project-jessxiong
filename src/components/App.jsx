@@ -63,7 +63,7 @@ function App() {
           handleAddSubjectClick={handleAddSubjectClick}
           handleInputAddCard={handleInputAddCard}
           handleDelete={handleDeleteSubject}
-          />} ></Route>
+          />} />
        <Route path="/subject/:cardtitle" element={ <IndividualNotesPage 
           titleNames={noteNames} 
           newNote={newNote}
@@ -75,7 +75,7 @@ function App() {
        <Route path="/help" element={ <Help /> } />
       </Routes>
       <footer className="credits">
-        <p>Favicon from Icon Finder ©</p>
+        <p>© Favicon from Icon Finder</p>
       </footer>
     </div>
   );
