@@ -6,36 +6,35 @@ export function Timer(props) {
 
   const [time, setTime] = useState(initialFocusTime * 60);
   const [isRunning, setIsRunning] = useState(false);
-  const [focusTime, setFocusTime] = useState(initialFocusTime);
-  const [breakTime, setBreakTime] = useState(initialBreakTime);
+  const [focusTime, setFocusTime] = useState(initialFocusTime.toString());
+  const [breakTime, setBreakTime] = useState(initialBreakTime.toString());
+  const [onBreak, setOnBreak] = useState(false);
 
-  useEffect(function() {
+  useEffect(() => {
     let timer;
-    
     if (isRunning && time > 0) {
-      timer = setInterval(function() {
-        setTime(function(prevTime) {
-          return prevTime - 1;
-        });
+      timer = setInterval(() => {
+        setTime((prevTime) => prevTime - 1);
       }, 1000);
     } else if (time === 0) {
-      alert("Time is up!");
-      setIsRunning(false);
+      if (!onBreak) {
+        alert("Focus time is up! Starting break...");
+        setTime(Number(breakTime) * 60);
+        setOnBreak(true);
+      } else {
+        alert("Break time is up! Back to focus time.");
+        setTime(Number(focusTime) * 60);
+        setOnBreak(false);
+      }
     }
 
-    return function() {
-      clearInterval(timer);
-    };
-
-  }, [isRunning, time]);
+    return () => clearInterval(timer);
+  }, [isRunning, time, focusTime, breakTime, onBreak]);
 
   function formatTime(seconds) {
     let minutes = Math.floor(seconds / 60);
     let secs = seconds % 60;
-    if (secs < 10) {
-      secs = "0" + secs;
-    }
-    return minutes + ":" + secs;
+    return `${minutes}:${secs < 10 ? "0" + secs : secs}`;
   }
 
   function toggleTimer() {
@@ -44,18 +43,35 @@ export function Timer(props) {
 
   function resetTimer() {
     setIsRunning(false);
-    setTime(focusTime * 60);
+    setOnBreak(false);
+    setTime(Number(focusTime) * 60);
   }
 
   function updateFocusTime(event) {
-    let newFocusTime = Number(event.target.value);
-    setFocusTime(newFocusTime);
-    setTime(newFocusTime * 60);
+    let newFocusTime = event.target.value;
+
+    if (newFocusTime === "") {
+      setFocusTime(""); 
+    } else {
+      let num = Number(newFocusTime);
+      if (num > 0) {
+        setFocusTime(num.toString());
+        setTime(num * 60);
+      }
+    }
   }
 
   function updateBreakTime(event) {
-    let newBreakTime = Number(event.target.value);
-    setBreakTime(newBreakTime);
+    let newBreakTime = event.target.value;
+
+    if (newBreakTime === "") {
+      setBreakTime(""); 
+    } else {
+      let num = Number(newBreakTime);
+      if (num > 0) {
+        setBreakTime(num.toString());
+      }
+    }
   }
 
   return (
@@ -64,7 +80,7 @@ export function Timer(props) {
         <div className="timer-circle">
           <span className="timer-display">{formatTime(time)}</span>
         </div>
-  
+
         <div className="timer-controls">
           <button className="btn timer-stop-btn" onClick={resetTimer}>
             Reset
@@ -74,21 +90,32 @@ export function Timer(props) {
           </button>
         </div>
       </div>
-  
+
       <div className="timer-customization">
         <h3>Customize Timer</h3>
         <div className="timer-input">
           <label>Focus Time (minutes)</label>
-          <input type="number" value={focusTime} onChange={updateFocusTime} min="1" />
+          <input 
+            type="text" 
+            value={focusTime} 
+            onChange={updateFocusTime} 
+            min="1" 
+            required
+          />
         </div>
         <div className="timer-input">
           <label>Break Time (minutes)</label>
-          <input type="number" value={breakTime} onChange={updateBreakTime} min="1" />
+          <input 
+            type="text" 
+            value={breakTime} 
+            onChange={updateBreakTime} 
+            min="1"
+            required 
+          />
         </div>
       </div>
-
     </div>
   );
-  
 }
+
 

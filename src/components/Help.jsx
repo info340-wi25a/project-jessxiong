@@ -8,6 +8,14 @@ export function Help() {
             <h2>To Do</h2>
             <h3>Description for To Do</h3>
             <h2>Timer</h2>
+                <ul>
+                    <li>
+                        Set your focus and break time, then press 'Start' to begin the timer. 
+                    </li>
+                    <li>
+                        The timer will count down your focus session, then automatically switch to a break before resetting for the next session.
+                    </li>
+                </ul>
             <h3>Description for Timer</h3>
             <h2>Notes</h2>
             <ul>
