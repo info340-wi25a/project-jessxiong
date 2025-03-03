@@ -12,11 +12,11 @@ export function EditNote(props) {
             <div className="container">
                 <h1 className="note-title">{cardtitle}</h1>
                 <div className="note">
-                    <input type="text" className="title" placeholder="Enter title" required />
+                    <input type="text" id="title" className="title" placeholder="Enter title" required />
                     <textarea className="content" placeholder="Write your notes..."></textarea>
                     <div className="add-image">
                         <form action="/action_page.php">
-                            <input type="file" id="img" name="img" accept="image/*" required />
+                            <input type="file" id="img" className="img" accept="image/*" required />
                             <label htmlFor="add-image"></label>
                         </form>
                     </div>
