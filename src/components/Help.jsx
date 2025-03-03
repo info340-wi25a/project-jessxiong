@@ -18,7 +18,6 @@ export function Help() {
                         The timer will count down your focus session, then automatically switch to a break before resetting for the next session.
                     </li>
                 </ul>
-            <h3>Description for Timer</h3>
             <h2>Notes</h2>
             <ul>
                 <li>
