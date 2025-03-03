@@ -36,7 +36,7 @@ function Home() {
       <footer>
         <section className="past-tasks">
           <div className="container text-center mt-4">
-            <button type="button" className="btn btn-secondary buttonStyle">
+            <button type="button" className="btn btn-secondary button-style">
               View Past Tasks
             </button>
           </div>
