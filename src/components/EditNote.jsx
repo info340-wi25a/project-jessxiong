@@ -2,8 +2,10 @@ import React from 'react';
 import { useParams, Link } from 'react-router';
 
 export function EditNote(props) {
+    // console.log({cardtitle})
+    // console.log({titleNames})
 
-const {cardtitle, subjecttitle} = useParams();
+    const {cardtitle, subjecttitle} = useParams();
 
     return (
         <section className="edit-note">
@@ -15,7 +17,7 @@ const {cardtitle, subjecttitle} = useParams();
                     <div className="add-image">
                         <form action="/action_page.php">
                             <input type="file" id="img" name="img" accept="image/*" required />
-                            <label for="add-image"></label>
+                            <label htmlFor="add-image"></label>
                         </form>
                     </div>
                 </div>
