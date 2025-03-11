@@ -13,9 +13,9 @@ export function EditNote(props) {
                 <h1 className="note-title">{cardtitle}</h1>
                 <div className="note">
                     <input type="text" id="title" className="title" placeholder="Enter title" required />
-                    <textarea className="content" placeholder="Write your notes..."></textarea>
-                    <div className="add-image">
-                        <form action="/action_page.php">
+                    <textarea className="content" placeholder="Write your notes..." required />
+                    <div className="image">
+                        <form className="add-image">
                             <input type="file" id="img" className="img" accept="image/*" required />
                             <label htmlFor="add-image"></label>
                         </form>
