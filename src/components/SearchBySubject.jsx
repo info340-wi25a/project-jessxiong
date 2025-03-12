@@ -23,7 +23,7 @@ export function SearchBySubject(props) {
         <div className="container">
             <form className="searchbar">
                 <label htmlFor="search keyword">Search: </label>
-                <input className="form-control me-2"id="search keyword" type="search" placeholder="Type keyword.." value={userKeyword} onChange={handleInput}/>
+                <input className="form-control me-2"id="search keyword" type="search" placeholder="Type keyword.." value={userKeyword} onChange={handleInput} required/>
                 <select onChange={handleSelect}>
                     <option key="none">none</option>
                     {optionsArray}

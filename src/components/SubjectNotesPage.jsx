@@ -7,12 +7,12 @@ import { SearchBySubject } from "./SearchBySubject.jsx";
 export function SubjectNotesPage(props) {    
     const {titleNames, newSubject, handleAddSubjectClick, handleInputAddCard, handleDelete} = props;
     
-    const [selected, setSelected] = useState('');
+    const [selected, setSelected] = useState('none');
     const [userKeyword, setUserKeyword] = useState('');
     console.log(selected, userKeyword);
 
     const displayedCards = props.titleNames.filter((title) => {
-        if ((selected === '' || selected === 'none') && userKeyword === '') {
+        if ((selected === 'none') && userKeyword === '') {
             return true;
         } else {
             if (selected === title && userKeyword === '') {

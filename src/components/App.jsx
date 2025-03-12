@@ -21,38 +21,52 @@ function App() {
 
   console.log(noteNames);
 
-  const handleAddSubjectClick = (event) => {
+  function handleAddSubjectClick(event) {
     event.preventDefault();
-    setSubjectNames( (originalList) => [...originalList, newSubject]);
+    const newSubjectNames = [...subjectNames, newSubject];
+    setSubjectNames(newSubjectNames);
     setNewSubject('');
   }
 
-  const handleAddNoteClick = (event) => {
+  function handleAddNoteClick(event) {
     event.preventDefault();
-    setNoteNames( (originalList) => [...originalList, newNote]);
+    const newNoteNames = [...noteNames, newNote];
+    setNoteNames(newNoteNames);
     setNewNote('');
   }
 
-  const handleInputAddCard = (event) => {
+  function handleInputAddCard(event) {
     setNewSubject(event.target.value);
   }
 
-  const handleInputAddNoteCard = (event) => {
+  function handleInputAddNoteCard(event) {
     setNewNote(event.target.value);
   }
 
-  const handleDeleteSubject = (subjectToDelete) => {
-    setSubjectNames((originalList) => 
-      originalList.filter((subject) => subject !== subjectToDelete))
+  function handleDeleteSubject(subjectToDelete) {
+    const newSubjectNames = subjectNames.filter((subject) => {
+      return subject !== subjectToDelete
+    })
+    setSubjectNames(newSubjectNames);
   }
 
-  const handleDeleteNote = (noteToDelete) => {
-    setNoteNames((originalList) => 
-      originalList.filter((note) => note !== noteToDelete))
+  function handleDeleteNote(noteToDelete) {
+    const newNoteNames = noteNames.filter((note) => {
+      return note !== noteToDelete
+    })
+    setNoteNames(newNoteNames);
   }
 
   return (
     <div className="App">
+      <head>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+      <meta name="author" content="Jennie Zhang, Olivia Kim, Jessica Xiong , Eunji Shin" />
+      <meta name="description" content="A study planner app" />
+      <title>FocusFlow</title>
+      <link rel="icon" type="image/png" href="img/6585301_books_education_learning_school_study_icon.png" />
+      </head>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
