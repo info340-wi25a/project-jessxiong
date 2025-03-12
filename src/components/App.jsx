@@ -59,14 +59,6 @@ function App() {
 
   return (
     <div className="App">
-      <head>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-      <meta name="author" content="Jennie Zhang, Olivia Kim, Jessica Xiong , Eunji Shin" />
-      <meta name="description" content="A study planner app" />
-      <title>FocusFlow</title>
-      <link rel="icon" type="image/png" href="img/6585301_books_education_learning_school_study_icon.png" />
-      </head>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
