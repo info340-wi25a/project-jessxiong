@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useState } from 'react';
 
 import { CardListNotes  } from "./CardList.jsx";
@@ -30,16 +30,23 @@ export function IndividualNotesPage(props) {
         console.log(displayedCards);
 
     
-        const handleInput = (event) => {
+        function handleInput(event) {
             setUserKeyword(event.target.value);
         }
     
-        const applyFilter = (typed) => {
+        function applyFilter(typed) {
             setUserKeyword(typed);
+        }
+
+        const goTo = useNavigate();
+
+        function handleBack(event) {
+            goTo("/subject");
         }
     
     return (
         <div>
+            <button className="btn button-style back-button" type="submit" onClick={handleBack}>Back</button>
             <h1>Notes for {cardtitle} </h1>
             <SearchByNote 
             userKeyword={userKeyword}
