@@ -1,15 +1,21 @@
 import React from 'react';
-import { useParams, Link } from 'react-router';
+import { useParams, useNavigate, Link } from 'react-router';
 import { Timer } from './Timer';
 
 export function EditNote(props) {
     const {subjecttitle, cardtitle} = useParams();
+    const goTo = useNavigate();
+
+    function handleBack(event) {
+        goTo("/subject/" + subjecttitle);
+    }
     
     return (
         <section className="edit-note">
+            <button className="btn button-style back-button" type="submit" onClick={handleBack}>Back</button>
             <div className="container">
                 <h1 className="note-title">{cardtitle}</h1>
-                <div className="edit-note-header">                
+                <div className="edit-note-header">              
                     <div className="note">
                         <input type="text" id="title" className="title" placeholder="Enter title" required />
                         <textarea className="content" placeholder="Write your notes..." required />
@@ -33,3 +39,4 @@ export function EditNote(props) {
         </section>
     );
 }
+

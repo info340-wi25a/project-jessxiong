@@ -5,7 +5,6 @@ import Navbar from './NavBar.jsx';
 import Home from './Home.jsx';
 import { Timer } from "./Timer.jsx";
 
-
 import { SubjectNotesPage } from "./SubjectNotesPage.jsx";
 import { IndividualNotesPage } from './IndividualNotesPage.jsx';
 import { EditNote } from "./EditNote.jsx";
