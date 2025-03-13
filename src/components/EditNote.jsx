@@ -3,11 +3,8 @@ import { useParams, Link } from 'react-router';
 import { Timer } from './Timer';
 
 export function EditNote(props) {
-    // console.log({cardtitle})
-    // console.log({titleNames})
-
-    const {cardtitle, subjecttitle} = useParams();
-
+    const {subjecttitle, cardtitle} = useParams();
+    
     return (
         <section className="edit-note">
             <div className="container">
@@ -28,8 +25,7 @@ export function EditNote(props) {
                     </div>
                 </div>
                 <div className="add-note">
-                    {/* <Link to={"/subject/" + cardtitle + "/" + subjecttitle}> */}
-                    <Link to={"/subject/" + cardtitle}>
+                    <Link to={"/subject/" + subjecttitle}>
                         <button className="btn button-style" type="submit">Save Note</button>
                     </Link>
                 </div>

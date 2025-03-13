@@ -69,16 +69,16 @@ function App() {
           handleAddSubjectClick={handleAddSubjectClick}
           handleInputAddCard={handleInputAddCard}
           handleDelete={handleDeleteSubject}
-          />} />
-       <Route path="/subject/:cardtitle" element={ <IndividualNotesPage 
+        />} />
+        <Route path="/subject/:subjecttitle" element={ <IndividualNotesPage 
           titleNames={noteNames} 
           newNote={newNote}
           handleAddNoteClick={handleAddNoteClick}
           handleInputAddNoteCard={handleInputAddNoteCard}
           handleDeleteNote={handleDeleteNote}
-       /> } />
-       <Route path="/subject/:cardtitle/edit" element={ <EditNote /> } />
-       <Route path="/help" element={ <Help /> } />
+        /> } />
+        <Route path="/subject/:subjecttitle/:cardtitle/edit" element={<EditNote />} />
+        <Route path="/help" element={ <Help /> } />
       </Routes>
       <footer className="credits">
         <p>© Favicon from Icon Finder</p>

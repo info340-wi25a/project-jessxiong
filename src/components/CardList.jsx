@@ -9,7 +9,7 @@ export function CardListSubject(props) {
     const {newSubject, handleAddSubjectClick, handleInputAddCard, handleDelete} = props;
     
     const cardTitleArray = props.titleNames.map((name) => {
-        const transformed = (<CardSubject key={name} title={name} handleDelete={handleDelete} />);
+        const transformed = <CardSubject key={name} title={name} handleDelete={handleDelete} />;
         return transformed
     })
 
@@ -25,10 +25,10 @@ export function CardListSubject(props) {
 }
 
 export function CardListNotes(props) {
-    const {newNote, handleAddNoteClick, handleInputAddNoteCard, handleDelete} = props;
+    const {newNote, handleAddNoteClick, handleInputAddNoteCard, handleDelete, subjecttitle} = props;
     
     const cardTitleArray = props.titleNames.map((name) => {
-        const transformed = (<CardNotes key={name} title={name} handleDelete={handleDelete} />);
+        const transformed = <CardNotes key={name} title={name} subjecttitle={subjecttitle} handleDelete={handleDelete} />;
         return transformed
     })
 
@@ -46,11 +46,12 @@ export function CardListNotes(props) {
 function CardSubject(props) {
     // let imgURL = "img/" + props.name;
     // imgURL += "Cover.jpg";
-    let cardURL = "/subject/" + props.title;
+    const {subjecttitle, title, handleDelete} = props;
+    let cardURL = "/subject/" + title;
     
 
     const handleClick = (event) => {
-        props.handleDelete(props.title)
+        handleDelete(title)
     }
     
     //console.log(imgURL)
@@ -62,7 +63,7 @@ function CardSubject(props) {
         </Link>
             <div className="card-body subject">
                 <div className="card-text">
-                    <h2 className="card-title"> {props.title} </h2>
+                    <h2 className="card-title"> {title} </h2>
                     <MdDelete className="delete" onClick={handleClick} />
                 </div>
             </div>
@@ -75,10 +76,11 @@ function CardSubject(props) {
 function CardNotes(props) {
     // let imgURL = "img/" + props.name;
     // imgURL += "Cover.jpg";
-    let cardURL = "/subject/" + props.title + "/edit";
+    const {subjecttitle, title, handleDelete} = props;
+    let cardURL = "/subject/" + subjecttitle + "/" + title + "/edit";
 
     const handleClick = (event) => {
-        props.handleDelete(props.title)
+        handleDelete(title)
     }
     
     //console.log(imgURL)
@@ -90,7 +92,7 @@ function CardNotes(props) {
             </Link>
             <div className="card-body subject">
                 <div className="card-text">
-                    <h2 className="card-title"> {props.title} </h2>
+                    <h2 className="card-title"> {title} </h2>
                     <MdDelete className="delete" onClick={handleClick}/>
                 </div>
             </div>
