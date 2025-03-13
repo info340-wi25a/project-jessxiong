@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router';
+import { Timer } from './Timer';
 
 export function EditNote(props) {
     // console.log({cardtitle})
@@ -11,14 +12,19 @@ export function EditNote(props) {
         <section className="edit-note">
             <div className="container">
                 <h1 className="note-title">{cardtitle}</h1>
-                <div className="note">
-                    <input type="text" id="title" className="title" placeholder="Enter title" required />
-                    <textarea className="content" placeholder="Write your notes..." required />
-                    <div className="image">
-                        <form className="add-image">
-                            <input type="file" id="img" className="img" accept="image/*" required />
-                            <label htmlFor="add-image"></label>
-                        </form>
+                <div className="edit-note-header">                
+                    <div className="note">
+                        <input type="text" id="title" className="title" placeholder="Enter title" required />
+                        <textarea className="content" placeholder="Write your notes..." required />
+                        <div className="image">
+                            <form className="add-image">
+                                <input type="file" id="img" className="img" accept="image/*" required />
+                                <label htmlFor="add-image"></label>
+                            </form>
+                        </div>
+                    </div>
+                    <div className="timer-in-edit">
+                        <Timer defaultFocusTime={25} defaultBreakTime={5} />
                     </div>
                 </div>
                 <div className="add-note">

@@ -356,17 +356,17 @@ nav li {
     border-top: 1px solid #ddd;
 }
 
-
 .folder-title {
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
 }
 
-.container {
+/* css for editnote */
+/* .container {
     max-width: 1300px;
     /* margin: auto 50px; */
-}
+/* } */
 
 .note {
     background-color: #d1e5f4;
@@ -404,7 +404,7 @@ nav li {
     color: rgb(55, 55, 55);
 }
 
-.add-image {
+.image {
     position: absolute;
     right: 0;
     font-size: 14px;
@@ -418,7 +418,7 @@ nav li {
     margin-top: 10px;
     font-size: 1.25rem;
 }
-
+/* css for editnote */
 
 @media (min-width: 598px) {
     .add-note {
