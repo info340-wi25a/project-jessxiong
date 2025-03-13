@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router';
 import { Timer } from './Timer';
 
-export function EditNote(props) {
+export function EditNote() {
     const {subjecttitle, cardtitle} = useParams();
     const goTo = useNavigate();
 
@@ -17,7 +17,7 @@ export function EditNote(props) {
                 <h1 className="note-title">{cardtitle}</h1>
                 <div className="edit-note-header">              
                     <div className="note">
-                        <input type="text" id="title" className="title" placeholder="Enter title" required />
+                        <input type="text" id="title" className="title" placeholder="Enter title" defaultValue={cardtitle} required />
                         <textarea className="content" placeholder="Write your notes..." required />
                         <div className="image">
                             <form className="add-image">
@@ -39,4 +39,3 @@ export function EditNote(props) {
         </section>
     );
 }
-
