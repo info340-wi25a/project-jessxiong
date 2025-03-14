@@ -9,7 +9,7 @@ export function CardListSubject(props) {
     const {newSubject, handleAddSubjectClick, handleInputAddCard, handleDelete, changeCurrentSubject} = props;
     
     const cardTitleArray = props.titleNames.map((name) => {
-        const transformed = (<CardSubject key={name} title={name} handleDelete={handleDelete} changeCurrentSubject={changeCurrentSubject} />);
+        const transformed = <CardSubject key={name} title={name} handleDelete={handleDelete} />;
         return transformed
     })
 
@@ -25,10 +25,10 @@ export function CardListSubject(props) {
 }
 
 export function CardListNotes(props) {
-    const {newNote, handleAddNoteClick, handleInputAddNoteCard, handleDelete, cardtitle} = props;
+    const {newNote, handleAddNoteClick, handleInputAddNoteCard, handleDelete, subjecttitle} = props;
     
     const cardTitleArray = props.titleNames.map((name) => {
-        const transformed = (<CardNotes key={name} title={name} handleDelete={handleDelete} />);
+        const transformed = <CardNotes key={name} title={name} subjecttitle={subjecttitle} handleDelete={handleDelete} />;
         return transformed
     })
 
@@ -37,7 +37,7 @@ export function CardListNotes(props) {
         <div className="container">
             <div className="row">
                 {cardTitleArray}
-                <AddCardNotes newNote={newNote} handleAddNoteClick={handleAddNoteClick} handleInputAddNoteCard={handleInputAddNoteCard} cardtitle={cardtitle}/>
+                <AddCardNotes newNote={newNote} handleAddNoteClick={handleAddNoteClick} handleInputAddNoteCard={handleInputAddNoteCard} subjecttitle={subjecttitle}/>
             </div>
         </div>
     )
@@ -72,7 +72,7 @@ function CardNotes(props) {
     let cardURL = "/subject/" + props.title + "/edit";
 
     const handleClick = (event) => {
-        props.handleDelete(props.title)
+        handleDelete(title)
     }
 
     return (
@@ -115,10 +115,10 @@ export function AddCardSubject(props) {
 }
 
 export function AddCardNotes(props) {
-    const {newNote, handleAddNoteClick, handleInputAddNoteCard, cardtitle} = props;
+    const {newNote, handleAddNoteClick, handleInputAddNoteCard, subjecttitle} = props;
 
     function handleClick(event) {
-        handleAddNoteClick(event, cardtitle);
+        handleAddNoteClick(event, subjecttitle);
     }
 
     return (

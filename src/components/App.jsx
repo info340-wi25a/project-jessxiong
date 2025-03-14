@@ -5,7 +5,6 @@ import Navbar from './NavBar.jsx';
 import Home from './Home.jsx';
 import { Timer } from "./Timer.jsx";
 
-
 import { SubjectNotesPage } from "./SubjectNotesPage.jsx";
 import { IndividualNotesPage } from './IndividualNotesPage.jsx';
 import { EditNote } from "./EditNote.jsx";
@@ -20,10 +19,6 @@ function App() {
 
   console.log(noteBySubject);
   //console.log(currSubject);
-
-  function ChangeCurrentSubject(subject) {
-    setCurrSubject(subject);
-  }
 
   function handleAddSubjectClick(event) {
     event.preventDefault();
@@ -93,10 +88,9 @@ function App() {
           handleAddNoteClick={handleAddNoteClick}
           handleInputAddNoteCard={handleInputAddNoteCard}
           handleDeleteNote={handleDeleteNote}
-          //currSubject={currSubject}
-       /> } />
-       <Route path="/subject/:cardtitle/edit" element={ <EditNote /> } />
-       <Route path="/help" element={ <Help /> } />
+        /> } />
+        <Route path="/subject/:subjecttitle/:cardtitle/edit" element={<EditNote />} />
+        <Route path="/help" element={ <Help /> } />
       </Routes>
       <footer className="credits">
         <p>© Favicon from Icon Finder</p>
