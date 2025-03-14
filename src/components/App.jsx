@@ -12,26 +12,39 @@ import { EditNote } from "./EditNote.jsx";
 import { Help } from "./Help.jsx";
 
 function App() {
-  const initialSubjectList = ["INFO340", "INFO360", "INFO380", "CSE373", "CSE414"];
-  const initialNoteNames = ["Lecture1", "Assignment1", "Exam 1", "Exam2", "Final Project"];
-  const [subjectNames, setSubjectNames] = useState(initialSubjectList);
+  const [subjectNames, setSubjectNames] = useState([]);
   const [newSubject, setNewSubject] = useState("");
-  const [noteNames, setNoteNames] = useState(initialNoteNames);
+  const [noteBySubject, setNoteBySubject] = useState({});
   const [newNote, setNewNote] = useState('');
+  //const [currSubject, setCurrSubject] = useState("");
 
-  console.log(noteNames);
+  console.log(noteBySubject);
+  //console.log(currSubject);
+
+  function ChangeCurrentSubject(subject) {
+    setCurrSubject(subject);
+  }
 
   function handleAddSubjectClick(event) {
     event.preventDefault();
+
     const newSubjectNames = [...subjectNames, newSubject];
     setSubjectNames(newSubjectNames);
+
+    const newNotes = {...noteBySubject, [newSubject] : []};
+    setNoteBySubject(newNotes);
+
     setNewSubject('');
   }
 
-  function handleAddNoteClick(event) {
+  function handleAddNoteClick(event, currSubject) {
     event.preventDefault();
-    const newNoteNames = [...noteNames, newNote];
-    setNoteNames(newNoteNames);
+
+    const updatedNotes =  [...(noteBySubject[currSubject] || []), newNote];
+
+    const newNoteBySubject = {...noteBySubject, [currSubject] : updatedNotes};
+    setNoteBySubject(newNoteBySubject);
+
     setNewNote('');
   }
 
@@ -48,13 +61,16 @@ function App() {
       return subject !== subjectToDelete
     })
     setSubjectNames(newSubjectNames);
+
+    const { [subjectToDelete]: deletedSubject, ...remainingSubjects } = noteBySubject;
+    setNoteBySubject(remainingSubjects);
   }
 
-  function handleDeleteNote(noteToDelete) {
-    const newNoteNames = noteNames.filter((note) => {
-      return note !== noteToDelete
-    })
-    setNoteNames(newNoteNames);
+  function handleDeleteNote(subject, noteToDelete) {
+    const updatedNotes = noteBySubject[subject].filter(note => note !== noteToDelete);
+
+    const newNoteBySubject = { ...noteBySubject, [subject]: updatedNotes };
+    setNoteBySubject(newNoteBySubject);
   }
 
   return (
@@ -69,13 +85,15 @@ function App() {
           handleAddSubjectClick={handleAddSubjectClick}
           handleInputAddCard={handleInputAddCard}
           handleDelete={handleDeleteSubject}
+          //ChangeCurrSubject={ChangeCurrentSubject}
           />} />
        <Route path="/subject/:cardtitle" element={ <IndividualNotesPage 
-          titleNames={noteNames} 
+          noteBySubject={noteBySubject} 
           newNote={newNote}
           handleAddNoteClick={handleAddNoteClick}
           handleInputAddNoteCard={handleInputAddNoteCard}
           handleDeleteNote={handleDeleteNote}
+          //currSubject={currSubject}
        /> } />
        <Route path="/subject/:cardtitle/edit" element={ <EditNote /> } />
        <Route path="/help" element={ <Help /> } />

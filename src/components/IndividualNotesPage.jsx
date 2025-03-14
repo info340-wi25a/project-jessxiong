@@ -8,13 +8,15 @@ import { SearchByNote } from "./SearchByNote.jsx";
 export function IndividualNotesPage(props) {
     const { cardtitle } = useParams();
 
-    const {titleNames, newNote, handleAddNoteClick, handleInputAddNoteCard, handleDeleteNote} = props;
+    const {noteBySubject, newNote, handleAddNoteClick, handleInputAddNoteCard, handleDeleteNote} = props;
 
     const [userKeyword, setUserKeyword] = useState('');
     console.log(userKeyword);
 
-    
-        const displayedCards = titleNames.filter((title) => {
+        const noteNames = noteBySubject[cardtitle] || [];
+        console.log(noteNames);
+
+        const displayedCards = noteNames.filter((title) => {
             if ( userKeyword === '') {
                 return true;
             } else {
@@ -58,6 +60,7 @@ export function IndividualNotesPage(props) {
             handleAddNoteClick={handleAddNoteClick}
             handleInputAddNoteCard={handleInputAddNoteCard}
             handleDelete={handleDeleteNote}
+            cardtitle={cardtitle}
             />
         </div>
     )

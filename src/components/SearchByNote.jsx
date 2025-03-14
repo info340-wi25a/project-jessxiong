@@ -15,7 +15,7 @@ export function SearchByNote(props) {
         <div className="container">
             <form className="searchbar">
                 <label htmlFor="search keyword">Search: </label>
-                <input className="form-control me-2"id="search keyword" type="search" placeholder="Type keyword.." value={userKeyword} onChange={handleInput} required/>
+                <input className="form-control me-2 styling-bar"id="search keyword" type="search" placeholder="Type keyword.." value={userKeyword} onChange={handleInput} required/>
                 <button className="btn button-style" type="submit" onClick={handleClick}>Search</button>
             </form>
         </div>

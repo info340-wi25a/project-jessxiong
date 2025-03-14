@@ -176,6 +176,10 @@ nav li {
    margin-top: 1rem;
 }
 
+.searchbar .styling-bar {
+    margin-bottom: 1rem;
+}
+
 .searchbar label {
     padding-right: 1rem;
     padding-top: .5rem;
@@ -448,6 +452,10 @@ nav li {
     }
 
     .searchbar label {
+        margin-bottom: 0rem;
+    }
+
+    .searchbar .styling-bar {
         margin-bottom: 0rem;
     }
 
