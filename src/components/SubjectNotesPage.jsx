@@ -28,16 +28,16 @@ export function SubjectNotesPage(props) {
 
     console.log(displayedCards);
 
-    const handleSelect = (event) => {
+    function handleSelect(event) {
         const subject = event.target.value;
         setSelected(subject);
     }
 
-    const handleInput = (event) => {
+    function handleInput(event) {
         setUserKeyword(event.target.value);
     }
 
-    const applyFilter = (typed, title) => {
+    function applyFilter(typed, title) {
         setSelected(title);
         setUserKeyword(typed);
     }

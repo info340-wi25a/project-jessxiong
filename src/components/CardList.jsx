@@ -72,7 +72,7 @@ function CardNotes(props) {
     const {subjecttitle, title, handleDelete} = props;
      let cardURL = "/subject/" + subjecttitle + "/" + title + "/edit";
 
-    const handleClick = (event) => {
+    function handleClick(event) {
         handleDelete(subjecttitle, title)
     }
 

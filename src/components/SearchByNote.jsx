@@ -3,7 +3,7 @@ import React from 'react';
 export function SearchByNote(props) {
     const {userKeyword, handleInput, applyFilter} = props;
 
-    const handleClick = (event) => {
+    function handleClick(event) {
         event.preventDefault();
         applyFilter(userKeyword);
     }

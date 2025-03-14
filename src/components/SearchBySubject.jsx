@@ -11,7 +11,7 @@ export function SearchBySubject(props) {
         return transformed;
     })
 
-    const handleClick = (event) => {
+    function handleClick(event) {
         event.preventDefault();
         applyFilter(userKeyword, selected);
     }
