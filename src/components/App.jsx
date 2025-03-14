@@ -82,7 +82,7 @@ function App() {
           handleDelete={handleDeleteSubject}
           //ChangeCurrSubject={ChangeCurrentSubject}
           />} />
-       <Route path="/subject/:cardtitle" element={ <IndividualNotesPage 
+       <Route path="/subject/:subjecttitle" element={ <IndividualNotesPage 
           noteBySubject={noteBySubject} 
           newNote={newNote}
           handleAddNoteClick={handleAddNoteClick}

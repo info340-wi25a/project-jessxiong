@@ -60,7 +60,7 @@ export function IndividualNotesPage(props) {
             handleAddNoteClick={handleAddNoteClick}
             handleInputAddNoteCard={handleInputAddNoteCard}
             handleDelete={handleDeleteNote}
-            subjecttitletitle={subjecttitle}
+            subjecttitle={subjecttitle}
             />
         </div>
     )

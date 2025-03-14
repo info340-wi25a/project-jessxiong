@@ -6,7 +6,7 @@ import { MdDelete } from "react-icons/md";
 
 
 export function CardListSubject(props) {
-    const {newSubject, handleAddSubjectClick, handleInputAddCard, handleDelete, changeCurrentSubject} = props;
+    const {newSubject, handleAddSubjectClick, handleInputAddCard, handleDelete} = props;
     
     const cardTitleArray = props.titleNames.map((name) => {
         const transformed = <CardSubject key={name} title={name} handleDelete={handleDelete} />;
@@ -69,10 +69,11 @@ function CardSubject(props) {
 }
 
 function CardNotes(props) {
-    let cardURL = "/subject/" + props.title + "/edit";
+    const {subjecttitle, title, handleDelete} = props;
+     let cardURL = "/subject/" + subjecttitle + "/" + title + "/edit";
 
     const handleClick = (event) => {
-        handleDelete(title)
+        handleDelete(subjecttitle, title)
     }
 
     return (
