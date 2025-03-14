@@ -17,7 +17,6 @@ export function EditNote() {
                 <h1 className="note-title">{cardtitle}</h1>
                 <div className="edit-note-header">              
                     <div className="note">
-                        <input type="text" id="title" className="title" placeholder="Enter title" defaultValue={cardtitle} required />
                         <textarea className="content" placeholder="Write your notes..." required />
                         <div className="image">
                             <form className="add-image">
