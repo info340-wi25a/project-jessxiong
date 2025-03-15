@@ -69,19 +69,33 @@ function Home() {
 
   const handleDelete = () => {
     if (selectedLists.length > 0) {
+      // Delete entire selected lists
       if (selectedLists.includes("To-Do Today")) {
-        setTodayTasks([]);
+        setTodayTasks([]); // Clear today's tasks
       }
+  
       setTodoData((prevData) => {
         const newData = { ...prevData };
         selectedLists.forEach((listName) => {
           if (listName !== "To-Do Today") {
-            delete newData[listName];
+            delete newData[listName]; // Remove list from state
           }
         });
         return newData;
       });
-      setSelectedLists([]); 
+  
+      setSelectedLists([]); // Clear selected lists after deletion
+    } else {
+      // Delete only completed tasks
+      setTodayTasks((prevTasks) => prevTasks.filter((task) => !task.completed));
+  
+      setTodoData((prevData) => {
+        const newData = {};
+        Object.keys(prevData).forEach((listName) => {
+          newData[listName] = prevData[listName].filter((task) => !task.completed);
+        });
+        return newData;
+      });
     }
   };
 
