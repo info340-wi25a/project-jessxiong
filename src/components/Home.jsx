@@ -9,6 +9,7 @@ function Home() {
   const [todayTasks, setTodayTasks] = useState([]);
   const [pastTasks, setPastTasks] = useState([]);
   const [showPastTasks, setShowPastTasks] = useState(false);
+  
 
   const handleTaskUpdate = (updatedTask, listName) => {
     if (listName === "To-Do Today") {
