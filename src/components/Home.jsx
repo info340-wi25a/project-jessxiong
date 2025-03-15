@@ -67,8 +67,16 @@ function Home() {
     }
   };
 
-  const togglePastTasksVisibility = () => {
-    setShowPastTasks(!showPastTasks);
+  const handleDelete = (listName) => {
+    if (listName === "To-Do Today") {
+      const remainingTasks = todayTasks.filter(task => !task.completed);
+      setTodayTasks(remainingTasks);
+    } else {
+      setTodoData(prevData => ({
+        ...prevData,
+        [listName]: prevData[listName].filter(task => !task.completed)
+      }));
+    }
   };
 
 return (
@@ -80,13 +88,17 @@ return (
         <button className="btn button-style" onClick={handleRemoveFinished}>
           Remove Finished
         </button>
-        <button className="btn button-style"><FaTrash size={20} /></button>
+        <button className="btn button-style" onClick={() => {
+              handleDelete("To-Do Today");
+              Object.keys(todoData).forEach(listName => handleDelete(listName));
+            }}
+          ><FaTrash size={20} /></button>
       </div>
 
-      <TodoList title="To-Do Today" tasks={todayTasks} isToday={true} onTaskUpdate={handleTaskUpdate} />
+      <TodoList title="To-Do Today" tasks={todayTasks} isToday={true} onTaskUpdate={handleTaskUpdate} onDelete={handleDelete}/>
 
       {Object.keys(todoData).map((key) => (
-        <TodoList key={key} title={`${key} To-Do`} tasks={todoData[key]} onTaskUpdate={handleTaskUpdate} />
+        <TodoList key={key} title={`${key} To-Do`} tasks={todoData[key]} onTaskUpdate={handleTaskUpdate} onDelete={handleDelete}/>
       ))}
 
       <AddTask onAddTask={handleAddTask} listNames={["To-Do Today", ...Object.keys(todoData)]} />
