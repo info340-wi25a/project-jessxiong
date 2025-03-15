@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ProgressBar } from 'react-bootstrap';
 
-function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate }) {
+function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate, onSelect }) {
   const [tasks, setTasks] = useState([]);
   const [isListChecked, setIsListChecked] = useState(false);
+  const listName = isToday ? "To-Do Today" : title.replace(" To-Do", "");
 
   useEffect(() => {
     setTasks(initialTasks || []);
@@ -14,16 +15,19 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate }) {
     setTasks((prevTasks) =>
       prevTasks.map((task, i) => (i === index ? updatedTask : task))
     );
-    onTaskUpdate(updatedTask, title.replace(" To-Do", ""));
+    onTaskUpdate(updatedTask, listName);
   };
 
   const handleListCheckboxChange = () => {
     const newCheckedState = !isListChecked;
     setIsListChecked(newCheckedState);
+    if (onSelect) {
+      onSelect(listName, newCheckedState); 
+    }
     if (newCheckedState) {
       const updatedTasks = tasks.map(task => ({ ...task, completed: true }));
       setTasks(updatedTasks);
-      updatedTasks.forEach(task => onTaskUpdate(task, title.replace(" To-Do", "")));
+      updatedTasks.forEach(task => onTaskUpdate(task, listName));
     }
   };
 
@@ -43,6 +47,7 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate }) {
                   type="checkbox"
                   checked={isListChecked}
                   onChange={handleListCheckboxChange}
+                  className="me-2"
                 />
                 <h2 className="ms-2">{title}</h2>
               </div>

@@ -9,7 +9,7 @@ function Home() {
   const [todayTasks, setTodayTasks] = useState([]);
   const [pastTasks, setPastTasks] = useState([]);
   const [showPastTasks, setShowPastTasks] = useState(false);
-  
+  const [selectedLists, setSelectedLists] = useState([]); 
 
   const handleTaskUpdate = (updatedTask, listName) => {
     if (listName === "To-Do Today") {
@@ -45,7 +45,6 @@ function Home() {
     setTodoData(newTodoData);
     setPastTasks((prev) => [...prev, ...movedTasks]);
   };
-  
 
   const handleAddTask = (taskText, listName) => {
     if (!taskText.trim()) return;
@@ -68,64 +67,89 @@ function Home() {
     }
   };
 
-  const handleDelete = (listName) => {
-    if (listName === "To-Do Today") {
-      const remainingTasks = todayTasks.filter(task => !task.completed);
-      setTodayTasks(remainingTasks);
-    } else {
-      setTodoData(prevData => ({
-        ...prevData,
-        [listName]: prevData[listName].filter(task => !task.completed)
-      }));
+  const handleDelete = () => {
+    if (selectedLists.length > 0) {
+      if (selectedLists.includes("To-Do Today")) {
+        setTodayTasks([]);
+      }
+      setTodoData((prevData) => {
+        const newData = { ...prevData };
+        selectedLists.forEach((listName) => {
+          if (listName !== "To-Do Today") {
+            delete newData[listName];
+          }
+        });
+        return newData;
+      });
+      setSelectedLists([]); 
     }
   };
 
-return (
-  <main>
-    <div className="container">
-      <h1 className="text-center mb-3">To-Do List</h1>
+  const handleListSelection = (listName, isSelected) => {
+    setSelectedLists((prev) =>
+      isSelected ? [...prev, listName] : prev.filter((name) => name !== listName)
+    );
+  };
 
-      <div className="d-flex justify-content-end gap-2 mb-3">
-        <button className="btn button-style" onClick={handleRemoveFinished}>
-          Remove Finished
-        </button>
-        <button className="btn button-style" onClick={() => {
-              handleDelete("To-Do Today");
-              Object.keys(todoData).forEach(listName => handleDelete(listName));
-            }}
-          ><FaTrash size={20} /></button>
-      </div>
+  return (
+    <main>
+      <div className="container">
+        <h1 className="text-center mb-3">To-Do List</h1>
 
-      <TodoList title="To-Do Today" tasks={todayTasks} isToday={true} onTaskUpdate={handleTaskUpdate} onDelete={handleDelete}/>
-
-      {Object.keys(todoData).map((key) => (
-        <TodoList key={key} title={`${key} To-Do`} tasks={todoData[key]} onTaskUpdate={handleTaskUpdate} onDelete={handleDelete}/>
-      ))}
-
-      <AddTask onAddTask={handleAddTask} listNames={["To-Do Today", ...Object.keys(todoData)]} />
-
-      <CreateList onAddList={handleAddList} />
-
-      <footer>
-        <section className="past-tasks text-center mt-4">
-          <button className="btn btn-secondary button-style" onClick={() => setShowPastTasks(!showPastTasks)}>
-            {showPastTasks ? 'Hide Past Tasks' : 'View Past Tasks'}
+        <div className="d-flex justify-content-end gap-2 mb-3">
+          <button className="btn button-style" onClick={handleRemoveFinished}>
+            Remove Finished
           </button>
-          {showPastTasks && (
-            <div className="past-tasks-list">
-              <h3>Past Tasks</h3>
-              {pastTasks.length > 0 ? (
-                pastTasks.map((task, index) => <p key={index}>{task.text}</p>)
-              ) : (
-                <p>No past tasks</p>
-              )}
-            </div>
-          )}
-        </section>
-      </footer>
-    </div>
-  </main>
-);
+          <button className="btn button-style" onClick={handleDelete}>
+            <FaTrash size={20} />
+          </button>
+        </div>
+
+        <TodoList
+          title="To-Do Today"
+          tasks={todayTasks}
+          isToday={true}
+          onTaskUpdate={handleTaskUpdate}
+          onSelect={handleListSelection}
+        />
+
+        {Object.keys(todoData).map((key) => (
+          <TodoList
+            key={key}
+            title={`${key} To-Do`}
+            tasks={todoData[key]}
+            onTaskUpdate={handleTaskUpdate}
+            onSelect={handleListSelection}
+          />
+        ))}
+
+        <AddTask onAddTask={handleAddTask} listNames={["To-Do Today", ...Object.keys(todoData)]} />
+
+        <CreateList onAddList={handleAddList} />
+
+        <footer>
+          <section className="past-tasks text-center mt-4">
+            <button
+              className="btn btn-secondary button-style"
+              onClick={() => setShowPastTasks(!showPastTasks)}
+            >
+              {showPastTasks ? 'Hide Past Tasks' : 'View Past Tasks'}
+            </button>
+            {showPastTasks && (
+              <div className="past-tasks-list">
+                <h3>Past Tasks</h3>
+                {pastTasks.length > 0 ? (
+                  pastTasks.map((task, index) => <p key={index}>{task.text}</p>)
+                ) : (
+                  <p>No past tasks</p>
+                )}
+              </div>
+            )}
+          </section>
+        </footer>
+      </div>
+    </main>
+  );
 }
 
 export default Home;
