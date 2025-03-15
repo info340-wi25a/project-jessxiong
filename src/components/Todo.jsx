@@ -6,6 +6,8 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate }) {
 
   useEffect(() => {
     setTasks(initialTasks || []);
+    // Update isListChecked based on all tasks being completed
+    setIsListChecked(initialTasks?.every(task => task.completed) || false);
   }, [initialTasks]);
 
   const handleCheckboxChange = (index) => {
@@ -18,6 +20,14 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate }) {
 
   const handleListCheckboxChange = () => {
     setIsListChecked((prev) => !prev);
+    // Update all tasks to match the list checkbox state
+    setTasks((prevTasks) =>
+      prevTasks.map(task => ({ ...task, completed: !isListChecked }))
+    );
+    // Call onTaskUpdate for each task
+    tasks.forEach(task => {
+      onTaskUpdate({ ...task, completed: !isListChecked }, title.replace(" To-Do", ""));
+    });
   };
 
   const completedCount = tasks.filter((task) => task.completed).length;
