@@ -35,9 +35,10 @@ function App() {
   function handleAddNoteClick(event, currSubject) {
     event.preventDefault();
 
-    const updatedNotes =  [...(noteBySubject[currSubject] || []), newNote];
+    const newNoteObj = { title: newNote, content: "" };
+    const updatedNotes = [...(noteBySubject[currSubject] || []), newNoteObj];
 
-    const newNoteBySubject = {...noteBySubject, [currSubject] : updatedNotes};
+    const newNoteBySubject = {...noteBySubject, [currSubject]: updatedNotes};
     setNoteBySubject(newNoteBySubject);
 
     setNewNote('');
@@ -68,6 +69,21 @@ function App() {
     setNoteBySubject(newNoteBySubject);
   }
 
+  function handleUpdateNote(subject, title, newContent) {
+    const subjectNotes = noteBySubject[subject] || [];
+
+    const updatedNotes = subjectNotes.map(note => {
+        if (note.title === title) {
+          return { ...note, content: newContent };
+        } else {
+          return note;
+        }
+    })
+
+    const newNoteBySubject = { ...noteBySubject, [subject]: updatedNotes };
+    setNoteBySubject(newNoteBySubject);
+}
+
   return (
     <div className="App">
       <Navbar />
@@ -89,7 +105,7 @@ function App() {
           handleInputAddNoteCard={handleInputAddNoteCard}
           handleDeleteNote={handleDeleteNote}
         /> } />
-        <Route path="/subject/:subjecttitle/:cardtitle/edit" element={<EditNote />} />
+        <Route path="/subject/:subjecttitle/:cardtitle/edit" element={<EditNote noteBySubject={noteBySubject} handleUpdateNote={handleUpdateNote} />} />
         <Route path="/help" element={ <Help /> } />
       </Routes>
       <footer className="credits">

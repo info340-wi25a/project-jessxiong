@@ -16,18 +16,8 @@ export function IndividualNotesPage(props) {
         const noteNames = noteBySubject[subjecttitle] || [];
         console.log(noteNames);
 
-    const displayedCards = noteNames.filter((title) => {
-        if ( userKeyword === '') {
-            return true;
-        } else {
-            if ( title.toLowerCase().includes(userKeyword.toLowerCase())) {
-                return true;
-            }
-        }
-
-        return false;
-    })
-    
+    const filteredNotes = noteNames.filter(note => userKeyword === '' || note.title.toLowerCase().includes(userKeyword.toLowerCase()))
+    const displayedCards = filteredNotes.map(note => note.title);
 
     console.log(displayedCards);
 

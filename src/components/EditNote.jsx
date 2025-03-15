@@ -1,14 +1,30 @@
-import React from 'react';
-import { useParams, useNavigate, Link } from 'react-router';
+import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router';
 import { Timer } from './Timer';
 
-export function EditNote() {
-    const {subjecttitle, cardtitle} = useParams();
+export function EditNote(props) {
+    const { subjecttitle, cardtitle } = useParams();
+    const { noteBySubject, handleUpdateNote } = props;
+
+    const currentNotes = noteBySubject[subjecttitle] || [];
+    const currentNote = currentNotes.find(note => note.title === cardtitle) || "";
+
+    const [noteContent, setNoteContent] = useState(currentNote.content);
+
     const goTo = useNavigate();
+
+    function handleContent(event) {
+        setNoteContent(event.target.value);
+    }
 
     function handleBack(event) {
         goTo("/subject/" + subjecttitle);
     }
+
+    function handleSave() {
+        handleUpdateNote(subjecttitle, cardtitle, noteContent);
+        goTo("/subject/" + subjecttitle);
+    }       
     
     return (
         <section className="edit-note">
@@ -17,7 +33,13 @@ export function EditNote() {
                 <h1 className="note-title">{cardtitle}</h1>
                 <div className="edit-note-header">              
                     <div className="note">
-                        <textarea className="content" placeholder="Write your notes..." required />
+                        <textarea 
+                            className="content" 
+                            placeholder="Write your notes..."
+                            value={noteContent}
+                            onChange={handleContent}
+                            required 
+                        />
                         <div className="image">
                             <form className="add-image">
                                 <input type="file" id="img" className="img" accept="image/*" required />
@@ -30,9 +52,7 @@ export function EditNote() {
                     </div>
                 </div>
                 <div className="add-note">
-                    <Link to={"/subject/" + subjecttitle}>
-                        <button className="btn button-style" type="submit">Save Note</button>
-                    </Link>
+                    <button className="btn button-style" type="submit" onClick={handleSave}>Save Note</button>
                 </div>
             </div>
         </section>
