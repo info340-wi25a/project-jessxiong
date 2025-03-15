@@ -501,6 +501,36 @@ nav li {
     font-size: 1.25rem;
 }
 
+.instructions {
+    background-image: url('/Users/jessicaxiong/Documents/340/project-jessxiong/img/patrick-ryan-3kUIaB2EPp8-unsplash.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    padding: 20px;
+    color: #2D4E7B; 
+}
+
+.instructions::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 1; 
+}
+
+.instructions h1, .instructions h2, .instructions p, .instructions ul {
+    position: relative;
+    z-index: 2; 
+}
+
+.footer-element .dropdown-toggle {
+    background-color: #2D4E7B;
+    color: white;
+}
+
 @media (min-width: 598px) {
     .add-note {
         display: flex;

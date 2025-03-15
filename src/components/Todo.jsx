@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { ProgressBar } from 'react-bootstrap';
 
-function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate}) {
+function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate }) {
   const [tasks, setTasks] = useState([]);
   const [isListChecked, setIsListChecked] = useState(false);
 
@@ -29,9 +30,11 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate}) {
   const completedCount = tasks.filter((task) => task.completed).length;
   const progress = (completedCount / tasks.length) * 100 || 0;
 
+  const todoListClass = isToday ? 'card-body todo-list today-list' : 'card-body todo-list';
+
   return (
     <div className="container d-flex justify-content-center">
-      <div className={`card-body todo-list ${isToday ? 'today-list' : ''}`}>
+      <div className={todoListClass}>
         {tasks.length > 0 ? (
           <div className="card w-100 mb-4">
             <div className="row align-items-center">
@@ -57,13 +60,7 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate}) {
               </form>
               {isToday && (
                 <div className="col-xl-12">
-                  <div className="progress">
-                    <div
-                      className="progress-bar"
-                      role="progressbar"
-                      style={{ width: `${progress}%` }}
-                    ></div>
-                  </div>
+                  <ProgressBar now={progress} label={`${Math.round(progress)}%`} />
                 </div>
               )}
             </div>

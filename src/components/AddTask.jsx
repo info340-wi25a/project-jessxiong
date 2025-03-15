@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Dropdown } from 'react-bootstrap';
 
 function AddTask({ onAddTask, listNames }) {
   const [taskText, setTaskText] = useState('');
@@ -8,8 +9,8 @@ function AddTask({ onAddTask, listNames }) {
     e.preventDefault();
     if (taskText.trim() === '') return;
   
-    onAddTask(taskText, selectedList); // Call the function from Home
-    setTaskText(''); // Clear input field
+    onAddTask(taskText, selectedList); 
+    setTaskText(''); 
   };
 
   return (
@@ -26,18 +27,21 @@ function AddTask({ onAddTask, listNames }) {
             className="footer-element"
             required
           />
-          <select
-            id="task-list"
-            className="footer-element"
-            value={selectedList}
-            onChange={(e) => setSelectedList(e.target.value)}
-          >
-            {listNames.map((listName) => (
-              <option key={listName} value={listName}>
-                {listName}
-              </option>
-            ))}
-          </select>
+          <Dropdown className="footer-element">
+            <Dropdown.Toggle variant="success" id="dropdown-task-list">
+              {selectedList}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {listNames.map((listName, index) => (
+                <Dropdown.Item
+                  key={index}
+                  onClick={() => setSelectedList(listName)}
+                >
+                  {listName}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
           <button type="submit" className="footer-element btn button-style">
             Add Task
           </button>
