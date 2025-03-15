@@ -109,7 +109,7 @@ function App() {
         <Route path="/help" element={ <Help /> } />
       </Routes>
       <footer className="credits">
-        <p>© Favicon from Icon Finder</p>
+        <p>&copy; Favicon from Icon Finder</p>
       </footer>
     </div>
   );
