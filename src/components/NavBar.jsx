@@ -23,7 +23,8 @@ function Navbar() {
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
+                <div className={isOpen ? "collapse navbar-collapse show" : "collapse navbar-collapse"} 
+                        id="navbarNav">
                     <ul className="navbar-nav ms-auto">
                     <li className="nav-item">
                         <Link className="nav-link" to="/timer">Timer</Link>
