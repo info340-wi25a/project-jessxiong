@@ -45,7 +45,7 @@ export function Help() {
                     After clicking "Notes", you will be taken to "Subject Notes Page" where you can add and delete subject folders and also access previous notes. To access your notes, click on the image of the subject card. You can also sort and search by each subject.
                 </li>
                 <li>
-                    After clicking a subject card, you will be taken to "Notes for (Subject)" page where you can add, delete, and edit notes within the subject folder. You can search through your notes through date.
+                    After clicking a subject card, you will be taken to "Notes for (Subject)" page where you can add, delete, and edit notes within the subject folder. You can search through your notes through name.
                 </li>
                 <li>
                     If you click on existing notes in the subject folder, you will be able to edit notes. You can also use timer while taking notes, it isn't necessarily synced with the timer on timer page.
