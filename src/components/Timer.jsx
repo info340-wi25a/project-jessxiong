@@ -38,6 +38,15 @@ export function Timer(props) {
     setTimeout(() => setNotification(""), 3000);
   }
 
+  function skipBreak() {
+    setNotification("Break skipped! Back to focus time.");
+    setTime(Number(focusTime) * 60);
+    setOnBreak(false);
+    setIsRunning(true); 
+
+    setTimeout(() => setNotification(""), 3000);
+  }
+
   function formatTime(seconds) {
     let minutes = Math.floor(seconds / 60);
     let secs = seconds % 60;
@@ -100,10 +109,15 @@ export function Timer(props) {
           <button className="btn button-style timer-start-btn" onClick={toggleTimer}>
             {isRunning ? "Pause" : "Start"}
           </button>
+          {onBreak && (
+            <button className= "btn button-style timer-skip-btn" onClick={skipBreak}>
+              Skip Break
+            </button>
+          )}
         </div>
       </div>
 
-      <div className="timer-customization">
+      <form className="timer-customization">
         <h3>Customize Timer</h3>
         <div className="timer-input">
           <label htmlFor="focus-time">Focus Time (minutes)</label>
@@ -127,7 +141,7 @@ export function Timer(props) {
             required 
           />
         </div>
-      </div>
+      </form>
     </div>
   );
 }
