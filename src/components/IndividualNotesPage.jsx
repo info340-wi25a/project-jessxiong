@@ -13,10 +13,51 @@ export function IndividualNotesPage(props) {
     const [userKeyword, setUserKeyword] = useState('');
     console.log(userKeyword);
 
-        const noteNames = noteBySubject[subjecttitle] || [];
-        console.log(noteNames);
+    console.log(noteBySubject);
 
-    const displayedCards = noteNames.filter((title) => {
+    //const noteNames = noteBySubject[subjecttitle] || [];
+
+    const noteNames = Object.keys(noteBySubject);
+    let toDisplay = '';
+    let arrayToDisplay = [];
+    let dataArray = noteNames.filter((keyString) => {
+        // const transformed = {
+        //     subject: noteBySubject[keyString].subject,
+        //     notes: noteBySubject[keyString].notes || [],
+        // };
+        console.log(noteBySubject[keyString].subject);
+        console.log(subjecttitle);
+        if (noteBySubject[keyString].subject === subjecttitle) {
+            console.log(noteBySubject[keyString].notes)
+            toDisplay = Object.keys(noteBySubject[keyString].notes)
+            console.log(toDisplay);
+            arrayToDisplay = toDisplay.map((key) => {
+                return noteBySubject[keyString].notes[key]
+            })
+            //noteBySubject[keyString].notes[toDisplay];
+            console.log(arrayToDisplay);
+            return arrayToDisplay;
+        }
+      return false;
+    })
+
+    //dataArray = dataArray.notes;
+    
+    // const dataArray = noteNames.filter((key) => {
+    //     console.log(key.subject);
+    //     return key.subject === subjecttitle;
+    // })
+
+    // const noteNames = noteBySubject.filter((data) => {
+    //     return data.subject === subjecttitle;
+    // })
+
+    // noteNames = noteBySubject[noteNames].notes;
+
+    console.log(noteNames);
+    console.log(dataArray);
+
+    const displayedCards = arrayToDisplay.filter((title) => {
         if ( userKeyword === '') {
             return true;
         } else {

@@ -25,12 +25,14 @@ export function CardListSubject(props) {
 }
 
 export function CardListNotes(props) {
-    const {newNote, handleAddNoteClick, handleInputAddNoteCard, handleDelete, subjecttitle} = props;
+    const {newNote, handleAddNoteClick, handleInputAddNoteCard, handleDelete, subjecttitle, titleNames} = props;
     
-    const cardTitleArray = props.titleNames.map((name) => {
+    const cardTitleArray = titleNames.map((name) => {
         const transformed = <CardNotes key={name} title={name} subjecttitle={subjecttitle} handleDelete={handleDelete} />;
         return transformed
     })
+
+    console.log(titleNames);
 
 
     return(

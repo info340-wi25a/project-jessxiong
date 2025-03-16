@@ -1,6 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router';
+import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue, update } from 'firebase/database';
 import Navbar from './NavBar.jsx';
 import Home from './Home.jsx';
 import { Timer } from "./Timer.jsx";
@@ -15,20 +16,57 @@ function App() {
   const [newSubject, setNewSubject] = useState("");
   const [noteBySubject, setNoteBySubject] = useState({});
   const [newNote, setNewNote] = useState('');
-  //const [currSubject, setCurrSubject] = useState("");
 
   console.log(noteBySubject);
-  //console.log(currSubject);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const subjectListRef = ref(db, "subjects");
+
+
+    onValue(subjectListRef, (snapshot) => {
+      console.log("database changed");
+      const dataObj = snapshot.val();
+
+      if (dataObj) {
+        const objKeys = Object.keys(dataObj);
+        const dataArray = objKeys.map((keyString) => {
+          const transformed = {subject: keyString, notes: dataObj[keyString].notes || []};
+        return transformed;
+      })
+
+      console.log(dataArray);
+
+      console.log(dataArray);
+      setNoteBySubject(dataArray);
+      }
+    } )
+
+  }, [])
 
   function handleAddSubjectClick(event) {
     event.preventDefault();
 
     const newSubjectNames = [...subjectNames, newSubject];
+
+    const db = getDatabase();
+    const subjectListRef = ref(db, "subjects");
+
+    const newSubjectNotes = {
+      notes: []
+    }
+
+    const newSubjectData = {
+      newSubject : newSubjectNotes
+    }
+
+    // const newNotes = {...noteBySubject, [newSubject] : []};
+    // setNoteBySubject(newNotes);
+
+    
+    firebasePush(subjectListRef, newSubjectData);
+
     setSubjectNames(newSubjectNames);
-
-    const newNotes = {...noteBySubject, [newSubject] : []};
-    setNoteBySubject(newNotes);
-
     setNewSubject('');
   }
 
@@ -37,10 +75,17 @@ function App() {
 
     const updatedNotes =  [...(noteBySubject[currSubject] || []), newNote];
 
-    const newNoteBySubject = {...noteBySubject, [currSubject] : updatedNotes};
+    const newNoteList = { notes : updatedNotes}
+
+    const newNoteBySubject = {...noteBySubject, [currSubject]: newNoteList};
     setNoteBySubject(newNoteBySubject);
 
     setNewNote('');
+
+    const db = getDatabase();
+    const subjectListRef = ref(db, "subjects/" + currSubject + "/notes");
+
+    firebasePush(subjectListRef, newNote);
   }
 
   function handleInputAddCard(event) {
@@ -91,6 +136,7 @@ function App() {
         /> } />
         <Route path="/subject/:subjecttitle/:cardtitle/edit" element={<EditNote />} />
         <Route path="/help" element={ <Help /> } />
+        <Route path="*" element={<Help /> } />
       </Routes>
       <footer className="credits">
         <p>© Favicon from Icon Finder</p>
