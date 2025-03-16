@@ -38,6 +38,21 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate, onSelect 
 
   const todoListClass = isToday ? 'card-body todo-list today-list' : 'card-body todo-list';
 
+  const taskItems = [];
+  for (let index = 0; index < tasks.length; index++) {
+    const task = tasks[index];
+    taskItems.push(
+      <p key={index}>
+        <input
+          type="checkbox"
+          checked={task.completed}
+          onChange={() => handleCheckboxChange(index)}
+        />
+        {task.text}
+      </p>
+    );
+  }
+
   return (
     <div className="container d-flex justify-content-center">
       <div className={todoListClass}>
@@ -54,16 +69,7 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate, onSelect 
                 <h2>{title}</h2>
               </div>
               <form>
-                {tasks.map((task, index) => (
-                  <p key={index}>
-                    <input
-                      type="checkbox"
-                      checked={task.completed}
-                      onChange={() => handleCheckboxChange(index)}
-                    />
-                    {task.text}
-                  </p>
-                ))}
+                {taskItems}
               </form>
               {isToday && (
                 <div className="col-xl-12">
