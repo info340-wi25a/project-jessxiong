@@ -41,6 +41,7 @@ function App() {
       console.log(dataArray);
       setNoteBySubject(dataArray);
       }
+
     } )
 
   }, [])
@@ -60,12 +61,9 @@ function App() {
     const newSubjectData = {
       newSubject : newSubjectNotes
     }
-
-    // const newNotes = {...noteBySubject, [newSubject] : []};
-    // setNoteBySubject(newNotes);
-
     
-    firebasePush(subjectListRef, newSubjectData);
+    firebasePush(subjectListRef, newSubjectData)
+    .catch(err => console.log(err));
 
     setSubjectNames(newSubjectNames);
     setNewSubject('');
@@ -87,7 +85,8 @@ function App() {
     const db = getDatabase();
     const subjectNotesRef = ref(db, "subjects/" + currSubject + "/notes");
 
-    firebasePush(subjectNotesRef, newNoteObj);
+    firebasePush(subjectNotesRef, newNoteObj)
+    .catch(err => console.log(err));
   }
 
   function handleInputAddCard(event) {
@@ -109,7 +108,8 @@ function App() {
 
     const db = getDatabase();
     const subjectListRef = ref(db, "subjects/" + subjectToDelete);
-    firebaseSet(subjectListRef, null);
+    firebaseSet(subjectListRef, null)
+    .catch(err => console.log(err));
   }
 
   function handleDeleteNote(subject, noteToDelete) {
@@ -141,7 +141,8 @@ function App() {
 
     const db = getDatabase();
     const noteListRef = ref(db, "subjects/" + subject);
-    firebaseSet(noteListRef, { notes: copy[keyToUse].notes });
+    firebaseSet(noteListRef, { notes: copy[keyToUse].notes })
+    .catch(err => console.log(err));
   }
 
   function handleUpdateNote(subject, title, newContent) {
@@ -172,7 +173,8 @@ function App() {
 
     const db = getDatabase();
     const noteListRef = ref(db, "subjects/" + subject + "/notes");
-    firebaseSet(noteListRef, copy[keyToUse].notes);
+    firebaseSet(noteListRef, copy[keyToUse].notes)
+    .catch(err => console.log(err));
   }
 
 

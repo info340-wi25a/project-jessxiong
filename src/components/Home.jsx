@@ -47,14 +47,15 @@ function Home() {
       );
       setTodayTasks(updatedTasks);
       firebaseSet(ref(db, 'todayTasks'), updatedTasks)
-      .catch((error) => alert(`Failed to update task: ${error.message}`));
+      .catch(err => console.log(err));
     } else {
       const updatedList = (todoData[listName] || []).map((task) =>
         task.text === updatedTask.text ? updatedTask : task
       );
       const newTodoData = { ...todoData, [listName]: updatedList };
       setTodoData(newTodoData);
-      firebaseSet(ref(db, 'todoData'), newTodoData);
+      firebaseSet(ref(db, 'todoData'), newTodoData)
+      .catch(err => console.log(err));
     }
   };
 
@@ -77,9 +78,12 @@ function Home() {
     setTodayTasks(todayUnfinished);
     setTodoData(newTodoData);
     setPastTasks((prev) => [...prev, ...movedTasks]);
-    firebaseSet(ref(db, 'todayTasks'), todayUnfinished); 
-    firebaseSet(ref(db, 'todoData'), newTodoData); 
-    firebaseSet(ref(db, 'pastTasks'), [...pastTasks, ...movedTasks]);
+    firebaseSet(ref(db, 'todayTasks'), todayUnfinished)
+    .catch(err => console.log(err));
+    firebaseSet(ref(db, 'todoData'), newTodoData)
+    .catch(err => console.log(err));
+    firebaseSet(ref(db, 'pastTasks'), [...pastTasks, ...movedTasks])
+    .catch(err => console.log(err));
   };
 
 function handleAddTask(taskText, listName) {
@@ -91,12 +95,14 @@ function handleAddTask(taskText, listName) {
   if (listName === "To-Do Today") {
     const updatedTasks = [...(todayTasks || []), newTask];
     setTodayTasks(updatedTasks);
-      firebaseSet(ref(db, 'todayTasks'), updatedTasks);
+      firebaseSet(ref(db, 'todayTasks'), updatedTasks)
+      .catch(err => console.log(err));
     } else {
       const updatedList = [...(todoData[listName] || []), newTask];
       const newTodoData = { ...todoData, [listName]: updatedList };
       setTodoData(newTodoData);
-      firebaseSet(ref(db, 'todoData'), newTodoData);
+      firebaseSet(ref(db, 'todoData'), newTodoData)
+      .catch(err => console.log(err));
     }
 };
 
@@ -104,7 +110,8 @@ function handleAddTask(taskText, listName) {
     if (!newListName.trim() || todoData[newListName]) return;
     const newTodoData = { ...todoData, [newListName]: [] };
     setTodoData(newTodoData);
-    firebaseSet(ref(db, 'todoData'), newTodoData);
+    firebaseSet(ref(db, 'todoData'), newTodoData)
+    .catch(err => console.log(err));
   };
 
   function handleDelete() {
@@ -122,7 +129,9 @@ function handleAddTask(taskText, listName) {
       setTodoData(newTodoData);
       setSelectedLists([]);
       firebaseSet(ref(db, 'todayTasks'), newTodayTasks)
+      .catch(err => console.log(err));
       firebaseSet(ref(db, 'todoData'), newTodoData)
+      .catch(err => console.log(err));
     } else {
       const newTodayTasks = (todayTasks || []).filter((task) => !task.completed);
       const newTodoData = {};
@@ -131,8 +140,10 @@ function handleAddTask(taskText, listName) {
       });
       setTodayTasks(newTodayTasks);
       setTodoData(newTodoData);
-      firebaseSet(ref(db, 'todayTasks'), newTodayTasks);
-      firebaseSet(ref(db, 'todoData'), newTodoData);
+      firebaseSet(ref(db, 'todayTasks'), newTodayTasks)
+      .catch(err => console.log(err));
+      firebaseSet(ref(db, 'todoData'), newTodoData)
+      .catch(err => console.log(err));
     }
   };
 
