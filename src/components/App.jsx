@@ -105,13 +105,42 @@ function App() {
 
     const { [subjectToDelete]: deletedSubject, ...remainingSubjects } = noteBySubject;
     setNoteBySubject(remainingSubjects);
+
+    const db = getDatabase();
+    const subjectListRef = ref(db, "subjects/" + subjectToDelete);
+    firebaseSet(subjectListRef, null);
   }
 
   function handleDeleteNote(subject, noteToDelete) {
-    const updatedNotes = noteBySubject[subject].filter(note => note !== noteToDelete);
+    console.log(noteBySubject);
+    const noteNames = Object.keys(noteBySubject);
+    let copy = {...noteBySubject};
+    let keyToUse = '';
+  
+    noteNames.forEach((key) => {
+        if (copy[key].subject === subject) {
+            const notes = copy[key].notes;
+            keyToUse = key;
 
-    const newNoteBySubject = { ...noteBySubject, [subject]: updatedNotes };
-    setNoteBySubject(newNoteBySubject);
+            const updatedNotes = Object.keys(notes)
+            const filtered = updatedNotes.filter((noteKey) => {
+              return notes[noteKey] !== noteToDelete});
+            const filteredObject = filtered.reduce((result, noteKey) => {
+                    result[noteKey] = notes[noteKey];
+                    return result;
+                }, {});
+
+            copy[key].notes = filteredObject;
+        }
+    });
+
+    console.log(copy);
+
+    setNoteBySubject(copy);
+
+    const db = getDatabase();
+    const noteListRef = ref(db, "subjects/" + subject);
+    firebaseSet(noteListRef, { notes: copy[keyToUse].notes });
   }
 
   function handleUpdateNote(subject, title, newContent) {
