@@ -11,7 +11,7 @@ function Navbar() {
             <nav className="navbar navbar-expand-md navbar-light">
                 <div className="container">
                 <Link className="navbar-brand" to="/">
-                    <img src="/img/6585301_books_education_learning_school_study_icon.png" width="20" height="20" alt="Home"/>
+                    <img className="logo" src="/img/6585301_books_education_learning_school_study_icon.png" alt="Home"/>
                     FocusFlow
                 </Link>
                 <button
@@ -23,7 +23,8 @@ function Navbar() {
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
+                <div className={isOpen ? "collapse navbar-collapse show" : "collapse navbar-collapse"} 
+                        id="navbarNav">
                     <ul className="navbar-nav ms-auto">
                     <li className="nav-item">
                         <Link className="nav-link" to="/timer">Timer</Link>

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function CreateList({ onAddList }) {
   const [newListName, setNewListName] = useState('');
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     onAddList(newListName);
     setNewListName(''); 

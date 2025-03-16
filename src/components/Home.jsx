@@ -40,7 +40,7 @@ function Home() {
     });
   }, [db]);
 
-  const handleTaskUpdate = (updatedTask, listName) => {
+  function handleTaskUpdate(updatedTask, listName) {
     if (listName === "To-Do Today") {
       const updatedTasks = (todayTasks || []).map((task) =>
         task.text === updatedTask.text ? updatedTask : task
@@ -57,7 +57,7 @@ function Home() {
     }
   };
 
-  const handleRemoveFinished = () => {
+  function handleRemoveFinished() {
     const db = getDatabase();
     const todayUnfinished = todayTasks.filter((task) => !task.completed);
     const todayFinished = todayTasks.filter((task) => task.completed);
@@ -81,7 +81,7 @@ function Home() {
     firebaseSet(ref(db, 'pastTasks'), [...pastTasks, ...movedTasks]);
   };
 
-const handleAddTask = (taskText, listName) => {
+function handleAddTask(taskText, listName) {
   const db = getDatabase();
   if (!taskText.trim()) return;  
 
@@ -99,14 +99,14 @@ const handleAddTask = (taskText, listName) => {
     }
 };
 
-  const handleAddList = (newListName) => {
+  function handleAddList(newListName) {
     if (!newListName.trim() || todoData[newListName]) return;
     const newTodoData = { ...todoData, [newListName]: [] };
     setTodoData(newTodoData);
     firebaseSet(ref(db, 'todoData'), newTodoData);
   };
 
-  const handleDelete = () => {
+  function handleDelete() {
     if (selectedLists.length > 0) {
       let newTodayTasks = todayTasks;
       if (selectedLists.includes("To-Do Today")) {
@@ -135,7 +135,7 @@ const handleAddTask = (taskText, listName) => {
     }
   };
 
-  const handleListSelection = (listName, isSelected) => {
+  function handleListSelection(listName, isSelected) {
     setSelectedLists((prev) =>
       isSelected ? [...prev, listName] : prev.filter((name) => name !== listName)
     );
