@@ -5,17 +5,10 @@ import { BrowserRouter } from 'react-router'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
 import App from './components/App.jsx'
-<<<<<<< HEAD
-=======
-
->>>>>>> ddff872647374fc10f3586e6627af035c516bf2e
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<BrowserRouter> <App /> </BrowserRouter>);
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
