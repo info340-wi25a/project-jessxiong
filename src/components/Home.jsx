@@ -46,7 +46,8 @@ function Home() {
         task.text === updatedTask.text ? updatedTask : task
       );
       setTodayTasks(updatedTasks);
-      firebaseSet(ref(db, 'todayTasks'), updatedTasks);
+      firebaseSet(ref(db, 'todayTasks'), updatedTasks)
+      .catch((error) => alert(`Failed to update task: ${error.message}`));
     } else {
       const updatedList = (todoData[listName] || []).map((task) =>
         task.text === updatedTask.text ? updatedTask : task
