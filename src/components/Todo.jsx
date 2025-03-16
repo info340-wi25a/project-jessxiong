@@ -8,7 +8,7 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate, onSelect 
   const listName = isToday ? "To-Do Today" : title.replace(" To-Do", "");
 
   useEffect(() => {
-    setTasks(initialTasks || []);
+    setTasks(Array.isArray(initialTasks) ? initialTasks : []);
   }, [initialTasks]);
 
   const handleCheckboxChange = (index) => {

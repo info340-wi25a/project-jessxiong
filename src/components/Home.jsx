@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
+
+import { getDatabase, ref, set as firebaseSet, onValue } from 'firebase/database';
+
 import TodoList from '../components/Todo.jsx';
 import AddTask from '../components/AddTask.jsx';
 import CreateList from '../components/CreateList.jsx';
@@ -11,22 +15,50 @@ function Home() {
   const [showPastTasks, setShowPastTasks] = useState(false);
   const [selectedLists, setSelectedLists] = useState([]); 
 
+  const db = getDatabase();
+  useEffect(() => {
+    const todayTasksRef = ref(db, 'todayTasks');
+    const todoDataRef = ref(db, 'todoData');
+    const pastTasksRef = ref(db, 'pastTasks');
+
+    onValue(todayTasksRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log('todayTasks from Firebase:', data);
+      setTodayTasks(Array.isArray(data) ? data : []);
+    });
+
+    onValue(todoDataRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log('todoData from Firebase:', data);
+      setTodoData(data && typeof data === 'object' ? data : {});
+    });
+
+    onValue(pastTasksRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log('pastTasks from Firebase:', data);
+      setPastTasks(Array.isArray(data) ? data : []);
+    });
+  }, [db]);
+
   const handleTaskUpdate = (updatedTask, listName) => {
     if (listName === "To-Do Today") {
-      setTodayTasks((prevTasks) =>
-        prevTasks.map((task) => (task.text === updatedTask.text ? updatedTask : task))
+      const updatedTasks = (todayTasks || []).map((task) =>
+        task.text === updatedTask.text ? updatedTask : task
       );
+      setTodayTasks(updatedTasks);
+      firebaseSet(ref(db, 'todayTasks'), updatedTasks);
     } else {
-      setTodoData((prevData) => ({
-        ...prevData,
-        [listName]: prevData[listName].map((task) =>
-          task.text === updatedTask.text ? updatedTask : task
-        ),
-      }));
+      const updatedList = (todoData[listName] || []).map((task) =>
+        task.text === updatedTask.text ? updatedTask : task
+      );
+      const newTodoData = { ...todoData, [listName]: updatedList };
+      setTodoData(newTodoData);
+      firebaseSet(ref(db, 'todoData'), newTodoData);
     }
   };
 
   const handleRemoveFinished = () => {
+    const db = getDatabase();
     const todayUnfinished = todayTasks.filter((task) => !task.completed);
     const todayFinished = todayTasks.filter((task) => task.completed);
 
@@ -38,64 +70,68 @@ function Home() {
       const finishedTasks = todoData[listName].filter((task) => task.completed);
 
       newTodoData[listName] = unfinishedTasks;
-      movedTasks.push(...finishedTasks);
+      movedTasks = [...movedTasks, ...(finishedTasks || [])];
     });
 
     setTodayTasks(todayUnfinished);
     setTodoData(newTodoData);
     setPastTasks((prev) => [...prev, ...movedTasks]);
+    firebaseSet(ref(db, 'todayTasks'), todayUnfinished); 
+    firebaseSet(ref(db, 'todoData'), newTodoData); 
+    firebaseSet(ref(db, 'pastTasks'), [...pastTasks, ...movedTasks]);
   };
 
-  const handleAddTask = (taskText, listName) => {
-    if (!taskText.trim()) return;
+const handleAddTask = (taskText, listName) => {
+  const db = getDatabase();
+  if (!taskText.trim()) return;  
 
-    const newTask = { text: taskText, completed: false };
-    
-    if (listName === "To-Do Today") {
-      setTodayTasks((prevTasks) => [...prevTasks, newTask]);
+  const newTask = { text: taskText, completed: false };
+
+  if (listName === "To-Do Today") {
+    const updatedTasks = [...(todayTasks || []), newTask];
+    setTodayTasks(updatedTasks);
+      firebaseSet(ref(db, 'todayTasks'), updatedTasks);
     } else {
-      setTodoData((prevData) => ({
-        ...prevData,
-        [listName]: [...(prevData[listName] || []), newTask],
-      }));
+      const updatedList = [...(todoData[listName] || []), newTask];
+      const newTodoData = { ...todoData, [listName]: updatedList };
+      setTodoData(newTodoData);
+      firebaseSet(ref(db, 'todoData'), newTodoData);
     }
-  };
+};
 
   const handleAddList = (newListName) => {
-    if (!todoData[newListName]) {
-      setTodoData({ ...todoData, [newListName]: [] });
-    }
+    if (!newListName.trim() || todoData[newListName]) return;
+    const newTodoData = { ...todoData, [newListName]: [] };
+    setTodoData(newTodoData);
+    firebaseSet(ref(db, 'todoData'), newTodoData);
   };
 
   const handleDelete = () => {
     if (selectedLists.length > 0) {
-      // Delete entire selected lists
+      let newTodayTasks = todayTasks;
       if (selectedLists.includes("To-Do Today")) {
-        setTodayTasks([]); // Clear today's tasks
+        newTodayTasks = [];
+        setTodayTasks(newTodayTasks);
       }
-  
-      setTodoData((prevData) => {
-        const newData = { ...prevData };
-        selectedLists.forEach((listName) => {
-          if (listName !== "To-Do Today") {
-            delete newData[listName]; // Remove list from state
-          }
-        });
-        return newData;
+
+      const newTodoData = { ...todoData };
+      selectedLists.forEach((listName) => {
+        if (listName !== "To-Do Today") delete newTodoData[listName];
       });
-  
-      setSelectedLists([]); // Clear selected lists after deletion
+      setTodoData(newTodoData);
+      setSelectedLists([]);
+      firebaseSet(ref(db, 'todayTasks'), newTodayTasks)
+      firebaseSet(ref(db, 'todoData'), newTodoData)
     } else {
-      // Delete only completed tasks
-      setTodayTasks((prevTasks) => prevTasks.filter((task) => !task.completed));
-  
-      setTodoData((prevData) => {
-        const newData = {};
-        Object.keys(prevData).forEach((listName) => {
-          newData[listName] = prevData[listName].filter((task) => !task.completed);
-        });
-        return newData;
+      const newTodayTasks = (todayTasks || []).filter((task) => !task.completed);
+      const newTodoData = {};
+      Object.keys(todoData || {}).forEach((listName) => {
+        newTodoData[listName] = (todoData[listName] || []).filter((task) => !task.completed);
       });
+      setTodayTasks(newTodayTasks);
+      setTodoData(newTodoData);
+      firebaseSet(ref(db, 'todayTasks'), newTodayTasks);
+      firebaseSet(ref(db, 'todoData'), newTodoData);
     }
   };
 
