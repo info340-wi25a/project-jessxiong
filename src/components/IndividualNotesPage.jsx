@@ -41,19 +41,6 @@ export function IndividualNotesPage(props) {
       return false;
     })
 
-    //dataArray = dataArray.notes;
-    
-    // const dataArray = noteNames.filter((key) => {
-    //     console.log(key.subject);
-    //     return key.subject === subjecttitle;
-    // })
-
-    // const noteNames = noteBySubject.filter((data) => {
-    //     return data.subject === subjecttitle;
-    // })
-
-    // noteNames = noteBySubject[noteNames].notes;
-
     console.log(noteNames);
     console.log(dataArray);
 

@@ -5,7 +5,7 @@ function AddTask({ onAddTask, listNames }) {
   const [taskText, setTaskText] = useState('');
   const [selectedList, setSelectedList] = useState('To-Do Today');
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     if (taskText.trim() === '') return;
   
