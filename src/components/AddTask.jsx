@@ -13,6 +13,15 @@ function AddTask({ onAddTask, listNames }) {
     setTaskText(''); 
   };
 
+  const dropdownItems = [];
+  for (let i = 0; i < listNames.length; i++) {
+    dropdownItems.push(
+      <Dropdown.Item key={i} onClick={() => setSelectedList(listNames[i])}>
+        {listNames[i]}
+      </Dropdown.Item>
+    );
+  }
+
   return (
     <section className="add-task">
       <div className="container">
@@ -31,16 +40,7 @@ function AddTask({ onAddTask, listNames }) {
             <Dropdown.Toggle variant="success" id="dropdown-task-list">
               {selectedList}
             </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {listNames.map((listName, index) => (
-                <Dropdown.Item
-                  key={index}
-                  onClick={() => setSelectedList(listName)}
-                >
-                  {listName}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
+            <Dropdown.Menu>{dropdownItems}</Dropdown.Menu>
           </Dropdown>
           <button type="submit" className="footer-element btn button-style">
             Add Task

@@ -32,8 +32,6 @@ export function CardListNotes(props) {
         return transformed
     })
 
-    console.log(titleNames);
-
 
     return(
         <div className="container">

@@ -153,6 +153,24 @@ function handleAddTask(taskText, listName) {
     );
   };
 
+  const todoLists = [];
+  for (const key in todoData) {
+    todoLists.push(
+      <TodoList
+        key={key}
+        title={`${key} To-Do`}
+        tasks={todoData[key]}
+        onTaskUpdate={handleTaskUpdate}
+        onSelect={handleListSelection}
+      />
+    );
+  }
+
+  const pastTaskElements = [];
+  for (let i = 0; i < pastTasks.length; i++) {
+    pastTaskElements.push(<p key={i}>{pastTasks[i].text}</p>);
+  }
+
   return (
     <main>
       <div className="container">
@@ -175,15 +193,7 @@ function handleAddTask(taskText, listName) {
           onSelect={handleListSelection}
         />
 
-        {Object.keys(todoData).map((key) => (
-          <TodoList
-            key={key}
-            title={`${key} To-Do`}
-            tasks={todoData[key]}
-            onTaskUpdate={handleTaskUpdate}
-            onSelect={handleListSelection}
-          />
-        ))}
+        {todoLists}
 
         <AddTask onAddTask={handleAddTask} listNames={["To-Do Today", ...Object.keys(todoData)]} />
 
@@ -200,11 +210,7 @@ function handleAddTask(taskText, listName) {
             {showPastTasks && (
               <div className="past-tasks-list">
                 <h3>Past Tasks</h3>
-                {pastTasks.length > 0 ? (
-                  pastTasks.map((task, index) => <p key={index}>{task.text}</p>)
-                ) : (
-                  <p>No past tasks</p>
-                )}
+                {pastTaskElements.length > 0 ? pastTaskElements : <p>No past tasks</p>}
               </div>
             )}
           </section>
