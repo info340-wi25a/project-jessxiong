@@ -31,6 +31,10 @@ export function Help() {
                     <li>
                         The timer will count down your focus session, then automatically switch to a break before resetting for the next session.
                     </li>
+                    <li>
+                        If you want to skip the break and immediately start a new focus session, press the 'Skip Break' button. 
+                        This will return you to focus time without waiting for the break to finish.
+                    </li>
                 </ul>
             <h2>Notes</h2>
             <ul>

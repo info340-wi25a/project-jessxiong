@@ -356,6 +356,16 @@ nav li {
     background-color: #e55a5a;
 }
 
+.timer-controls .timer-skip-btn{
+    background-color: #555;
+    color: white;
+}
+
+.timer-controls .timer-skip-btn:hover {
+    background-color: #444 
+}
+
+
 .timer-customization {
     text-align: left;
     max-width: 400px;

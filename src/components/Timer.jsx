@@ -15,14 +15,15 @@ export function Timer(props) {
     let timer;
     if (isRunning && time > 0) {
       timer = setInterval(() => {
-        setTime((prevTime) => prevTime - 1);
+        const newTime = time - 1;
+        setTime(newTime);
       }, 1000);
     } else if (time === 0) {
       handleTimerEnd();
     }
 
     return () => clearInterval(timer);
-  }, [isRunning, time, focusTime, breakTime, onBreak]);
+  }, [isRunning, time]);
 
   function handleTimerEnd() {
     if (!onBreak) {
