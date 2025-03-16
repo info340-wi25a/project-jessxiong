@@ -2,72 +2,166 @@ import React, { useState } from 'react';
 import TodoList from '../components/Todo.jsx';
 import AddTask from '../components/AddTask.jsx';
 import CreateList from '../components/CreateList.jsx';
-
-const initialTodoData = {
-  work: [
-    { text: 'Change shift' },
-    { text: 'Email boss by EOD' },
-  ],
-  info340: [
-    { text: 'Finish problem set' },
-    { text: 'Attend office hours' },
-    { text: 'Debug code' },
-  ],
-};
+import { FaTrash } from 'react-icons/fa';
 
 function Home() {
-  const [todoData, setTodoData] = useState(initialTodoData);
-  const [todayTasks, setTodayTasks] = useState([
-    { text: 'Take INFO 340 notes' },
-    { text: 'Watch lecture' },
-    { text: 'Review INFO 340 notes' },
-  ]);
+  const [todoData, setTodoData] = useState({});
+  const [todayTasks, setTodayTasks] = useState([]);
+  const [pastTasks, setPastTasks] = useState([]);
+  const [showPastTasks, setShowPastTasks] = useState(false);
+  const [selectedLists, setSelectedLists] = useState([]); 
 
-  const handleAddTodayTask = (newTask) => {
-    setTodayTasks([...todayTasks, { text: newTask }]);
+  const handleTaskUpdate = (updatedTask, listName) => {
+    if (listName === "To-Do Today") {
+      setTodayTasks((prevTasks) =>
+        prevTasks.map((task) => (task.text === updatedTask.text ? updatedTask : task))
+      );
+    } else {
+      setTodoData((prevData) => ({
+        ...prevData,
+        [listName]: prevData[listName].map((task) =>
+          task.text === updatedTask.text ? updatedTask : task
+        ),
+      }));
+    }
   };
 
-  const handleDeleteAll = () => {
-    setTodoData({});
+  const handleRemoveFinished = () => {
+    const todayUnfinished = todayTasks.filter((task) => !task.completed);
+    const todayFinished = todayTasks.filter((task) => task.completed);
+
+    let movedTasks = [...todayFinished];
+
+    const newTodoData = {};
+    Object.keys(todoData).forEach((listName) => {
+      const unfinishedTasks = todoData[listName].filter((task) => !task.completed);
+      const finishedTasks = todoData[listName].filter((task) => task.completed);
+
+      newTodoData[listName] = unfinishedTasks;
+      movedTasks.push(...finishedTasks);
+    });
+
+    setTodayTasks(todayUnfinished);
+    setTodoData(newTodoData);
+    setPastTasks((prev) => [...prev, ...movedTasks]);
+  };
+
+  const handleAddTask = (taskText, listName) => {
+    if (!taskText.trim()) return;
+
+    const newTask = { text: taskText, completed: false };
+    
+    if (listName === "To-Do Today") {
+      setTodayTasks((prevTasks) => [...prevTasks, newTask]);
+    } else {
+      setTodoData((prevData) => ({
+        ...prevData,
+        [listName]: [...(prevData[listName] || []), newTask],
+      }));
+    }
+  };
+
+  const handleAddList = (newListName) => {
+    if (!todoData[newListName]) {
+      setTodoData({ ...todoData, [newListName]: [] });
+    }
+  };
+
+  const handleDelete = () => {
+    if (selectedLists.length > 0) {
+      // Delete entire selected lists
+      if (selectedLists.includes("To-Do Today")) {
+        setTodayTasks([]); // Clear today's tasks
+      }
+  
+      setTodoData((prevData) => {
+        const newData = { ...prevData };
+        selectedLists.forEach((listName) => {
+          if (listName !== "To-Do Today") {
+            delete newData[listName]; // Remove list from state
+          }
+        });
+        return newData;
+      });
+  
+      setSelectedLists([]); // Clear selected lists after deletion
+    } else {
+      // Delete only completed tasks
+      setTodayTasks((prevTasks) => prevTasks.filter((task) => !task.completed));
+  
+      setTodoData((prevData) => {
+        const newData = {};
+        Object.keys(prevData).forEach((listName) => {
+          newData[listName] = prevData[listName].filter((task) => !task.completed);
+        });
+        return newData;
+      });
+    }
+  };
+
+  const handleListSelection = (listName, isSelected) => {
+    setSelectedLists((prev) =>
+      isSelected ? [...prev, listName] : prev.filter((name) => name !== listName)
+    );
   };
 
   return (
     <main>
       <div className="container">
-        <div className="text-center mb-3">
-          <h1>To-Do List</h1>
+        <h1 className="text-center mb-3">To-Do List</h1>
+
+        <div className="d-flex justify-content-end gap-2 mb-3">
+          <button className="btn button-style" onClick={handleRemoveFinished}>
+            Remove Finished
+          </button>
+          <button className="btn button-style" onClick={handleDelete}>
+            <FaTrash size={20} />
+          </button>
         </div>
 
-        <div className="d-flex justify-content-end mb-3">
-          <button className="btn button-style" onClick={handleDeleteAll}>Delete</button>
-        </div>
+        <TodoList
+          title="To-Do Today"
+          tasks={todayTasks}
+          isToday={true}
+          onTaskUpdate={handleTaskUpdate}
+          onSelect={handleListSelection}
+        />
 
-        <div className="d-flex justify-content-center">
-            <TodoList title="To-Do Today" tasks={todayTasks} isToday={true} />
-        </div>
+        {Object.keys(todoData).map((key) => (
+          <TodoList
+            key={key}
+            title={`${key} To-Do`}
+            tasks={todoData[key]}
+            onTaskUpdate={handleTaskUpdate}
+            onSelect={handleListSelection}
+          />
+        ))}
 
-        <div className="row">
-          {Object.keys(todoData).map((key) => (
-            <TodoList key={key} title={`${key.charAt(0).toUpperCase() + key.slice(1)} To-Do`} tasks={todoData[key]} />
-          ))}
-        </div>
+        <AddTask onAddTask={handleAddTask} listNames={["To-Do Today", ...Object.keys(todoData)]} />
 
-        <div className="mt-4">
-          <AddTask onAddTask={handleAddTodayTask} />
-        </div>
-      </div>
+        <CreateList onAddList={handleAddList} />
 
-      <CreateList />
-
-      <footer>
-        <section className="past-tasks">
-          <div className="container text-center mt-4">
-            <button type="button" className="btn btn-secondary button-style">
-              View Past Tasks
+        <footer>
+          <section className="past-tasks text-center mt-4">
+            <button
+              className="btn btn-secondary button-style"
+              onClick={() => setShowPastTasks(!showPastTasks)}
+            >
+              {showPastTasks ? 'Hide Past Tasks' : 'View Past Tasks'}
             </button>
-          </div>
-        </section>
-      </footer>
+            {showPastTasks && (
+              <div className="past-tasks-list">
+                <h3>Past Tasks</h3>
+                {pastTasks.length > 0 ? (
+                  pastTasks.map((task, index) => <p key={index}>{task.text}</p>)
+                ) : (
+                  <p>No past tasks</p>
+                )}
+              </div>
+            )}
+          </section>
+        </footer>
+      </div>
     </main>
   );
 }

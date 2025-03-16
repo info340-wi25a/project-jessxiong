@@ -1,59 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ProgressBar } from 'react-bootstrap';
 
-function TodoList({ title, tasks: initialTasks, isToday }) {
-  const [tasks, setTasks] = useState(() => {
-    return initialTasks.map(task => {
-      return { ...task, completed: false };
-    });
-  });
+function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate, onSelect }) {
+  const [tasks, setTasks] = useState([]);
+  const [selectedTasks, setSelectedTasks] = useState(new Set()); 
+  const [isListChecked, setIsListChecked] = useState(false);
+  const listName = isToday ? "To-Do Today" : title.replace(" To-Do", "");
+
+  useEffect(() => {
+    setTasks(initialTasks || []);
+  }, [initialTasks]);
 
   const handleCheckboxChange = (index) => {
-    setTasks(tasks.map((task, i) => {
-      return i === index ? { ...task, completed: !task.completed } : task;
-    }));
+    const updatedTask = { ...tasks[index], completed: !tasks[index].completed };
+    setTasks((prevTasks) =>
+      prevTasks.map((task, i) => (i === index ? updatedTask : task))
+    );
+    onTaskUpdate(updatedTask, listName);
   };
-  const completedCount = tasks.filter(task => task.completed).length;
+  
+
+  const handleListCheckboxChange = () => {
+    const newCheckedState = !isListChecked;
+    setIsListChecked(newCheckedState);
+    if (onSelect) {
+      onSelect(listName, newCheckedState); 
+    }
+    if (newCheckedState) {
+      const updatedTasks = tasks.map(task => ({ ...task, completed: true }));
+      setTasks(updatedTasks);
+      updatedTasks.forEach(task => onTaskUpdate(task, listName));
+    }
+  };
+
+  const completedCount = tasks.filter((task) => task.completed).length;
   const progress = (completedCount / tasks.length) * 100 || 0;
 
-    const taskItems = tasks.map((task, index) => (
-      <p key={index}>
-        <input
-          type="checkbox"
-          id={`${title.toLowerCase().replace(/\s+/g, '-')}${index}`}
-          checked={task.completed}
-          onChange={() => handleCheckboxChange(index)}
-        />
-        <label htmlFor={`${title.toLowerCase().replace(/\s+/g, '-')}${index}`}>
-          {task.text}
-        </label>
-      </p>
-    ));
-  
-    return (
-      <div className={`card-body todo-list ${isToday ? 'today-list' : ''}`}>
-        <div className="card w-100 mb-4">
-          <div className="row align-items-center">
-            <div className="col-sm-auto col-xl-12 mb-xl-3">
-              <h2>{title}</h2>
-              <form>
-                {taskItems} 
-              </form>
-            </div>
-            {isToday && (
-              <div className="col-xl-12">
-                <div className="progress">
-                  <div
-                    className="progress-bar"
-                    role="progressbar"
-                    style={{ width: `${progress}%` }}
-                  ></div>
-                </div>
+  const todoListClass = isToday ? 'card-body todo-list today-list' : 'card-body todo-list';
+
+  return (
+    <div className="container d-flex justify-content-center">
+      <div className={todoListClass}>
+        {tasks.length > 0 ? (
+          <div className="card w-100 mb-4">
+            <div className="row align-items-center">
+              <div className="col-sm-auto col-xl-12 mb-xl-3 d-flex align-items-center">
+                <input
+                  type="checkbox"
+                  checked={isListChecked}
+                  onChange={handleListCheckboxChange}
+                  className="me-2"
+                />
+                <h2>{title}</h2>
               </div>
-            )}
+              <form>
+                {tasks.map((task, index) => (
+                  <p key={index}>
+                    <input
+                      type="checkbox"
+                      checked={task.completed}
+                      onChange={() => handleCheckboxChange(index)}
+                    />
+                    {task.text}
+                  </p>
+                ))}
+              </form>
+              {isToday && (
+                <div className="col-xl-12">
+                  <ProgressBar now={progress} label={`${Math.round(progress)}%`} />
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        ) : (
+          <p className="text-muted text-center">{title} is empty. Add a task!</p>
+        )}
       </div>
-    );
-  }
-  
-  export default TodoList;
+    </div>
+  );
+}
+
+export default TodoList;

@@ -9,6 +9,20 @@ export function Help() {
                 <p>
                     Use the To-Do lists to keep track of your tasks for today, as well as create any kind of To-do list category you would like. Add tasks and create new lists as needed!
                 </p>
+                <ul>
+                    <li>
+                        To create a new to do list, simply enter the name of the list and click 'Create List'
+                    </li>
+                    <li>
+                        To add a new task to a list, write the name of the task, choose the list to add it to, and click 'Add Task'
+                    </li>
+                    <li>
+                        Check each task as you finish. Once you're ready, click 'Remove Finished' to remove finished tasks. View these by clicking 'View Past Tasks' at the bottom of the page
+                    </li>
+                    <li>
+                        Made a mistake? No worries! Check any task or list you wish delete then click the trash icon
+                    </li>
+                </ul>
             <h2>Timer</h2>
                 <ul>
                     <li>
@@ -33,6 +47,14 @@ export function Help() {
                     If you click on existing files in the subject folder, you will be able to edit notes. And once you save the edits on the notes, you will be taken back to the subject folder and see the lists of notes again.
                 </li>
             </ul>
+
+            <footer>
+            <p>
+                Image from Unsplash&copy;
+            </p>
+            </footer>
         </div>
+
+        
     )
 }
