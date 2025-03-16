@@ -57,7 +57,7 @@ export function IndividualNotesPage(props) {
     console.log(noteNames);
     console.log(dataArray);
 
-    const displayedCards = arrayToDisplay.filter((title) => {
+    const displayedCards = arrayToDisplay.filter((note) => {
         if ( userKeyword === '') {
             return true;
         } else {

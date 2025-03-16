@@ -26,9 +26,9 @@ export function CardListSubject(props) {
 
 export function CardListNotes(props) {
     const {newNote, handleAddNoteClick, handleInputAddNoteCard, handleDelete, subjecttitle, titleNames} = props;
-    
-    const cardTitleArray = titleNames.map((name) => {
-        const transformed = <CardNotes key={name} title={name} subjecttitle={subjecttitle} handleDelete={handleDelete} />;
+
+    const cardTitleArray = titleNames.map((note) => {
+        const transformed = <CardNotes key={note.title} title={note.title} subjecttitle={subjecttitle} handleDelete={handleDelete} />;
         return transformed
     })
 
@@ -82,11 +82,13 @@ function CardNotes(props) {
     <div className="col-sm-12 col-lg-3">
         <div className="card h-100">
             <Link to={cardURL}>
-                <img className="pb-3 card-img-top" src="../img/noteCover.jpg" alt={props.title} />
+                {/* <img className="pb-3 card-img-top" src="../img/noteCover.jpg" alt={props.title} /> */}
+                <img className="pb-3 card-img-top" src="../img/noteCover.jpg" alt={title} />
             </Link>
             <div className="card-body subject">
                 <div className="card-text">
-                    <h2 className="card-title"> {props.title} </h2>
+                    {/* <h2 className="card-title"> {props.title} </h2> */}
+                    <h2 className="card-title">{title}</h2>
                     <MdDelete className="delete" onClick={handleClick}/>
                 </div>
             </div>
@@ -118,7 +120,7 @@ export function AddCardSubject(props) {
 }
 
 export function AddCardNotes(props) {
-    const {newNote, handleAddNoteClick, handleInputAddNoteCard, subjecttitle} = props;
+    const { newNote, handleAddNoteClick, handleInputAddNoteCard, subjecttitle } = props;
 
     function handleClick(event) {
         handleAddNoteClick(event, subjecttitle);
@@ -128,10 +130,18 @@ export function AddCardNotes(props) {
         <div className="col-sm-12 col-lg-3">
             <div className="card h-100">
                 <div className="card-body subject">
-                    <h2 className="card-title add-card"> Add a New Note </h2>
+                    <h2 className="card-title add-card">Add a New Note</h2>
                     <form className="footer-element add-subject">
                         <label htmlFor="subject_name">Title: </label>
-                        <input className="SubjectName form-control me-2" id="subject_name" type="text" placeholder="Enter..." value={newNote} onChange={handleInputAddNoteCard} required/>
+                        <input
+                            className="SubjectName form-control me-2"
+                            id="subject_name"
+                            type="text"
+                            placeholder="Enter..."
+                            value={newNote}
+                            onChange={handleInputAddNoteCard}
+                            required
+                        />
                     </form>
                     <div className="add-button">
                         <button type="submit" className="add-button btn button-style" onClick={handleClick}>Add</button>
@@ -139,5 +149,5 @@ export function AddCardNotes(props) {
                 </div>
             </div>
         </div>
-    )
+    );
 }

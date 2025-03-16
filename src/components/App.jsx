@@ -31,8 +31,9 @@ function App() {
       if (dataObj) {
         const objKeys = Object.keys(dataObj);
         const dataArray = objKeys.map((keyString) => {
-          const transformed = {subject: keyString, notes: dataObj[keyString].notes || []};
-        return transformed;
+          const notes = dataObj[keyString].notes || {};
+          const notesArray = Object.keys(notes).map((noteKey) => notes[noteKey]);
+          return { subject: keyString, notes: notesArray }; 
       })
 
       console.log(dataArray);
@@ -74,7 +75,7 @@ function App() {
     event.preventDefault();
 
     const newNoteObj = { title: newNote, content: "" };
-    const updatedNotes = [...(noteBySubject[currSubject] || []), newNoteObj];
+    const updatedNotes = [...(noteBySubject[currSubject]?.notes || []), newNoteObj];
 
     const newNoteList = { notes : updatedNotes}
 
@@ -84,9 +85,9 @@ function App() {
     setNewNote('');
 
     const db = getDatabase();
-    const subjectListRef = ref(db, "subjects/" + currSubject + "/notes");
+    const subjectNotesRef = ref(db, "subjects/" + currSubject + "/notes");
 
-    firebasePush(subjectListRef, newNote);
+    firebasePush(subjectNotesRef, newNoteObj);
   }
 
   function handleInputAddCard(event) {
@@ -124,7 +125,7 @@ function App() {
 
             const updatedNotes = Object.keys(notes)
             const filtered = updatedNotes.filter((noteKey) => {
-              return notes[noteKey] !== noteToDelete});
+              return notes[noteKey].title !== noteToDelete});
             const filteredObject = filtered.reduce((result, noteKey) => {
                     result[noteKey] = notes[noteKey];
                     return result;
@@ -143,20 +144,37 @@ function App() {
     firebaseSet(noteListRef, { notes: copy[keyToUse].notes });
   }
 
-  function handleUpdateNote(subject, title, newContent) {
-    const subjectNotes = noteBySubject[subject] || [];
+function handleUpdateNote(subject, title, newContent) {
+  console.log(noteBySubject);
+  
+  let copy = { ...noteBySubject };
+  let keyToUse = '';
 
-    const updatedNotes = subjectNotes.map(note => {
-        if (note.title === title) {
-          return { ...note, content: newContent };
-        } else {
-          return note;
-        }
-    })
+  Object.keys(copy).forEach((key) => {
+      if (copy[key].subject === subject) {
+          const notes = copy[key].notes;
+          keyToUse = key;
 
-    const newNoteBySubject = { ...noteBySubject, [subject]: updatedNotes };
-    setNoteBySubject(newNoteBySubject);
+          const updatedNotes = Object.keys(notes).reduce((result, noteKey) => {
+              if (notes[noteKey].title === title) {
+                  result[noteKey] = { ...notes[noteKey], content: newContent };
+              } else {
+                  result[noteKey] = notes[noteKey];
+              }
+              return result;
+          }, {});
+
+          copy[key].notes = updatedNotes;
+      }
+  });
+
+  setNoteBySubject(copy);
+
+  const db = getDatabase();
+  const noteListRef = ref(db, "subjects/" + subject + "/notes");
+  firebaseSet(noteListRef, copy[keyToUse].notes);
 }
+
 
   return (
     <div className="App">
@@ -171,15 +189,17 @@ function App() {
           handleInputAddCard={handleInputAddCard}
           handleDelete={handleDeleteSubject}
           //ChangeCurrSubject={ChangeCurrentSubject}
-          />} />
-       <Route path="/subject/:subjecttitle" element={ <IndividualNotesPage 
+        />} />
+        <Route path="/subject/:subjecttitle" element={ <IndividualNotesPage 
           noteBySubject={noteBySubject} 
           newNote={newNote}
           handleAddNoteClick={handleAddNoteClick}
           handleInputAddNoteCard={handleInputAddNoteCard}
           handleDeleteNote={handleDeleteNote}
         /> } />
-        <Route path="/subject/:subjecttitle/:cardtitle/edit" element={<EditNote noteBySubject={noteBySubject} handleUpdateNote={handleUpdateNote} />} />
+        <Route path="/subject/:subjecttitle/:cardtitle/edit" element={<EditNote
+          noteBySubject={noteBySubject} handleUpdateNote={handleUpdateNote}
+        />} />
         <Route path="/help" element={ <Help /> } />
         <Route path="*" element={<Help /> } />
       </Routes>

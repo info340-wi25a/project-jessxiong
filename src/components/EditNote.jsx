@@ -6,8 +6,8 @@ export function EditNote(props) {
     const { subjecttitle, cardtitle } = useParams();
     const { noteBySubject, handleUpdateNote } = props;
 
-    const currentNotes = noteBySubject[subjecttitle] || [];
-    const currentNote = currentNotes.find(note => note.title === cardtitle) || "";
+    const currentSubject = noteBySubject.find((subject) => subject.subject === subjecttitle);
+    const currentNote = currentSubject?.notes.find((note) => note.title === cardtitle) || { title: cardtitle, content: "" };
 
     const [noteContent, setNoteContent] = useState(currentNote.content);
 
@@ -24,7 +24,7 @@ export function EditNote(props) {
     function handleSave() {
         handleUpdateNote(subjecttitle, cardtitle, noteContent);
         goTo("/subject/" + subjecttitle);
-    }       
+    }
     
     return (
         <section className="edit-note">
