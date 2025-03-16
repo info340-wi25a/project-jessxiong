@@ -12,37 +12,22 @@ export function IndividualNotesPage(props) {
 
     const [userKeyword, setUserKeyword] = useState('');
     console.log(userKeyword);
-
     console.log(noteBySubject);
-
-    //const noteNames = noteBySubject[subjecttitle] || [];
 
     const noteNames = Object.keys(noteBySubject);
     let toDisplay = '';
     let arrayToDisplay = [];
     let dataArray = noteNames.filter((keyString) => {
-        // const transformed = {
-        //     subject: noteBySubject[keyString].subject,
-        //     notes: noteBySubject[keyString].notes || [],
-        // };
-        console.log(noteBySubject[keyString].subject);
-        console.log(subjecttitle);
+
         if (noteBySubject[keyString].subject === subjecttitle) {
-            console.log(noteBySubject[keyString].notes)
             toDisplay = Object.keys(noteBySubject[keyString].notes)
-            console.log(toDisplay);
             arrayToDisplay = toDisplay.map((key) => {
                 return noteBySubject[keyString].notes[key]
             })
-            //noteBySubject[keyString].notes[toDisplay];
-            console.log(arrayToDisplay);
             return arrayToDisplay;
         }
       return false;
     })
-
-    console.log(noteNames);
-    console.log(dataArray);
 
     const displayedCards = arrayToDisplay.filter((note) => {
         if ( userKeyword === '') {
@@ -55,9 +40,6 @@ export function IndividualNotesPage(props) {
 
         return false;
     })
-    
-
-    console.log(displayedCards);
 
 
     function handleInput(event) {

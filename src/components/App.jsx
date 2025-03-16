@@ -37,8 +37,6 @@ function App() {
       })
 
       console.log(dataArray);
-
-      console.log(dataArray);
       setNoteBySubject(dataArray);
       }
 
