@@ -6,7 +6,8 @@ export function EditNote(props) {
     const { subjecttitle, cardtitle } = useParams();
     const { noteBySubject, handleUpdateNote } = props;
 
-    const currentSubject = noteBySubject.find((subject) => subject.subject === subjecttitle);
+    const safeNoteBySubject = noteBySubject || [];
+    const currentSubject = safeNoteBySubject.find((subject) => subject.subject === subjecttitle);
     const currentNote = currentSubject?.notes.find((note) => note.title === cardtitle) || { title: cardtitle, content: "" };
 
     const [noteContent, setNoteContent] = useState(currentNote.content);
