@@ -1,6 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router';
+import { getDatabase, ref, set as firebaseSet, push as firebasePush, onValue, update } from 'firebase/database';
 import Navbar from './NavBar.jsx';
 import Home from './Home.jsx';
 import { Timer } from "./Timer.jsx";
@@ -15,20 +16,58 @@ function App() {
   const [newSubject, setNewSubject] = useState("");
   const [noteBySubject, setNoteBySubject] = useState({});
   const [newNote, setNewNote] = useState('');
-  //const [currSubject, setCurrSubject] = useState("");
 
   console.log(noteBySubject);
-  //console.log(currSubject);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const subjectListRef = ref(db, "subjects");
+
+
+    onValue(subjectListRef, (snapshot) => {
+      console.log("database changed");
+      const dataObj = snapshot.val();
+
+      if (dataObj) {
+        const objKeys = Object.keys(dataObj);
+        const dataArray = objKeys.map((keyString) => {
+          const notes = dataObj[keyString].notes || {};
+          const notesArray = Object.keys(notes).map((noteKey) => notes[noteKey]);
+          return { subject: keyString, notes: notesArray }; 
+      })
+
+      console.log(dataArray);
+
+      console.log(dataArray);
+      setNoteBySubject(dataArray);
+      }
+    } )
+
+  }, [])
 
   function handleAddSubjectClick(event) {
     event.preventDefault();
 
     const newSubjectNames = [...subjectNames, newSubject];
+
+    const db = getDatabase();
+    const subjectListRef = ref(db, "subjects");
+
+    const newSubjectNotes = {
+      notes: []
+    }
+
+    const newSubjectData = {
+      newSubject : newSubjectNotes
+    }
+
+    // const newNotes = {...noteBySubject, [newSubject] : []};
+    // setNoteBySubject(newNotes);
+
+    
+    firebasePush(subjectListRef, newSubjectData);
+
     setSubjectNames(newSubjectNames);
-
-    const newNotes = {...noteBySubject, [newSubject] : []};
-    setNoteBySubject(newNotes);
-
     setNewSubject('');
   }
 
@@ -36,12 +75,19 @@ function App() {
     event.preventDefault();
 
     const newNoteObj = { title: newNote, content: "" };
-    const updatedNotes = [...(noteBySubject[currSubject] || []), newNoteObj];
+    const updatedNotes = [...(noteBySubject[currSubject]?.notes || []), newNoteObj];
 
-    const newNoteBySubject = {...noteBySubject, [currSubject]: updatedNotes};
+    const newNoteList = { notes : updatedNotes}
+
+    const newNoteBySubject = {...noteBySubject, [currSubject]: newNoteList};
     setNoteBySubject(newNoteBySubject);
 
     setNewNote('');
+
+    const db = getDatabase();
+    const subjectNotesRef = ref(db, "subjects/" + currSubject + "/notes");
+
+    firebasePush(subjectNotesRef, newNoteObj);
   }
 
   function handleInputAddCard(event) {
@@ -60,29 +106,75 @@ function App() {
 
     const { [subjectToDelete]: deletedSubject, ...remainingSubjects } = noteBySubject;
     setNoteBySubject(remainingSubjects);
+
+    const db = getDatabase();
+    const subjectListRef = ref(db, "subjects/" + subjectToDelete);
+    firebaseSet(subjectListRef, null);
   }
 
   function handleDeleteNote(subject, noteToDelete) {
-    const updatedNotes = noteBySubject[subject].filter(note => note !== noteToDelete);
+    console.log(noteBySubject);
+    const noteNames = Object.keys(noteBySubject);
+    let copy = {...noteBySubject};
+    let keyToUse = '';
+  
+    noteNames.forEach((key) => {
+        if (copy[key].subject === subject) {
+            const notes = copy[key].notes;
+            keyToUse = key;
 
-    const newNoteBySubject = { ...noteBySubject, [subject]: updatedNotes };
-    setNoteBySubject(newNoteBySubject);
+            const updatedNotes = Object.keys(notes)
+            const filtered = updatedNotes.filter((noteKey) => {
+              return notes[noteKey].title !== noteToDelete});
+            const filteredObject = filtered.reduce((result, noteKey) => {
+                    result[noteKey] = notes[noteKey];
+                    return result;
+                }, {});
+
+            copy[key].notes = filteredObject;
+        }
+    });
+
+    console.log(copy);
+
+    setNoteBySubject(copy);
+
+    const db = getDatabase();
+    const noteListRef = ref(db, "subjects/" + subject);
+    firebaseSet(noteListRef, { notes: copy[keyToUse].notes });
   }
 
   function handleUpdateNote(subject, title, newContent) {
-    const subjectNotes = noteBySubject[subject] || [];
+    console.log(noteBySubject);
+    
+    let copy = { ...noteBySubject };
+    let keyToUse = '';
 
-    const updatedNotes = subjectNotes.map(note => {
-        if (note.title === title) {
-          return { ...note, content: newContent };
-        } else {
-          return note;
+    Object.keys(copy).forEach((key) => {
+        if (copy[key].subject === subject) {
+            const notes = copy[key].notes;
+            keyToUse = key;
+
+            const updatedNotes = Object.keys(notes).reduce((result, noteKey) => {
+                if (notes[noteKey].title === title) {
+                    result[noteKey] = { ...notes[noteKey], content: newContent };
+                } else {
+                    result[noteKey] = notes[noteKey];
+                }
+                return result;
+            }, {});
+
+            copy[key].notes = updatedNotes;
         }
-    })
+    });
 
-    const newNoteBySubject = { ...noteBySubject, [subject]: updatedNotes };
-    setNoteBySubject(newNoteBySubject);
-}
+    setNoteBySubject(copy);
+
+    const db = getDatabase();
+    const noteListRef = ref(db, "subjects/" + subject + "/notes");
+    firebaseSet(noteListRef, copy[keyToUse].notes);
+  }
+
 
   return (
     <div className="App">
@@ -97,19 +189,22 @@ function App() {
           handleInputAddCard={handleInputAddCard}
           handleDelete={handleDeleteSubject}
           //ChangeCurrSubject={ChangeCurrentSubject}
-          />} />
-       <Route path="/subject/:subjecttitle" element={ <IndividualNotesPage 
+        />} />
+        <Route path="/subject/:subjecttitle" element={ <IndividualNotesPage 
           noteBySubject={noteBySubject} 
           newNote={newNote}
           handleAddNoteClick={handleAddNoteClick}
           handleInputAddNoteCard={handleInputAddNoteCard}
           handleDeleteNote={handleDeleteNote}
         /> } />
-        <Route path="/subject/:subjecttitle/:cardtitle/edit" element={<EditNote noteBySubject={noteBySubject} handleUpdateNote={handleUpdateNote} />} />
+        <Route path="/subject/:subjecttitle/:cardtitle/edit" element={<EditNote
+          noteBySubject={noteBySubject} handleUpdateNote={handleUpdateNote}
+        />} />
         <Route path="/help" element={ <Help /> } />
+        <Route path="*" element={<Help /> } />
       </Routes>
       <footer className="credits">
-        <p>© Favicon from Icon Finder</p>
+        <p>&copy; Favicon from Icon Finder</p>
       </footer>
     </div>
   );

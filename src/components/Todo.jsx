@@ -3,11 +3,12 @@ import { ProgressBar } from 'react-bootstrap';
 
 function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate, onSelect }) {
   const [tasks, setTasks] = useState([]);
+  const [selectedTasks, setSelectedTasks] = useState(new Set()); 
   const [isListChecked, setIsListChecked] = useState(false);
   const listName = isToday ? "To-Do Today" : title.replace(" To-Do", "");
 
   useEffect(() => {
-    setTasks(initialTasks || []);
+    setTasks(Array.isArray(initialTasks) ? initialTasks : []);
   }, [initialTasks]);
 
   const handleCheckboxChange = (index) => {
@@ -17,6 +18,7 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate, onSelect 
     );
     onTaskUpdate(updatedTask, listName);
   };
+  
 
   const handleListCheckboxChange = () => {
     const newCheckedState = !isListChecked;
@@ -49,7 +51,7 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate, onSelect 
                   onChange={handleListCheckboxChange}
                   className="me-2"
                 />
-                <h2 className="ms-2">{title}</h2>
+                <h2>{title}</h2>
               </div>
               <form>
                 {tasks.map((task, index) => (

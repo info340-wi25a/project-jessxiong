@@ -47,6 +47,14 @@ export function Help() {
                     If you click on existing files in the subject folder, you will be able to edit notes. And once you save the edits on the notes, you will be taken back to the subject folder and see the lists of notes again.
                 </li>
             </ul>
+
+            <footer>
+            <p>
+                Image from Unsplash&copy;
+            </p>
+            </footer>
         </div>
+
+        
     )
 }

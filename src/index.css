@@ -55,6 +55,12 @@ h1 {
     width: 30%;
 }
 
+/* .todo-list h2, 
+    .today-list h2 {
+        text-align: center;
+    } */
+
+
 
 .todo-list {
     width: 100%;
@@ -228,7 +234,7 @@ nav li {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
-    margin-left: 0;
+    margin-left: 2rem;
     width: 80px;
     height: 40px;
 }
@@ -502,7 +508,7 @@ nav li {
 }
 
 .instructions {
-    background-image: url('/Users/jessicaxiong/Documents/340/project-jessxiong/img/patrick-ryan-3kUIaB2EPp8-unsplash.jpg');
+    background-image: url('/img/patrick-ryan-3kUIaB2EPp8-unsplash.jpg');
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -530,6 +536,8 @@ nav li {
     background-color: #2D4E7B;
     color: white;
 }
+
+
 
 @media (min-width: 598px) {
     .add-note {
@@ -582,6 +590,11 @@ nav li {
         margin-left: 16.5rem;
     }
 
+    .todo-list h2, 
+    .today-list h2 {
+        width: 100%;
+        text-align: center;
+    }
     
 }
 
@@ -593,4 +606,7 @@ nav li {
     .timer-in-edit {
         justify-content: center;
     }
+
+    
+
 }
