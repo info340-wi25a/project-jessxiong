@@ -11,7 +11,7 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate, onSelect 
     setTasks(Array.isArray(initialTasks) ? initialTasks : []);
   }, [initialTasks]);
 
-  const handleCheckboxChange = (index) => {
+  function handleCheckboxChange(index) {
     const updatedTask = { ...tasks[index], completed: !tasks[index].completed };
     setTasks((prevTasks) =>
       prevTasks.map((task, i) => (i === index ? updatedTask : task))
@@ -20,7 +20,7 @@ function TodoList({ title, tasks: initialTasks, isToday, onTaskUpdate, onSelect 
   };
   
 
-  const handleListCheckboxChange = () => {
+  function handleListCheckboxChange() {
     const newCheckedState = !isListChecked;
     setIsListChecked(newCheckedState);
     if (onSelect) {
