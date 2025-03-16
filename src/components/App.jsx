@@ -144,36 +144,36 @@ function App() {
     firebaseSet(noteListRef, { notes: copy[keyToUse].notes });
   }
 
-function handleUpdateNote(subject, title, newContent) {
-  console.log(noteBySubject);
-  
-  let copy = { ...noteBySubject };
-  let keyToUse = '';
+  function handleUpdateNote(subject, title, newContent) {
+    console.log(noteBySubject);
+    
+    let copy = { ...noteBySubject };
+    let keyToUse = '';
 
-  Object.keys(copy).forEach((key) => {
-      if (copy[key].subject === subject) {
-          const notes = copy[key].notes;
-          keyToUse = key;
+    Object.keys(copy).forEach((key) => {
+        if (copy[key].subject === subject) {
+            const notes = copy[key].notes;
+            keyToUse = key;
 
-          const updatedNotes = Object.keys(notes).reduce((result, noteKey) => {
-              if (notes[noteKey].title === title) {
-                  result[noteKey] = { ...notes[noteKey], content: newContent };
-              } else {
-                  result[noteKey] = notes[noteKey];
-              }
-              return result;
-          }, {});
+            const updatedNotes = Object.keys(notes).reduce((result, noteKey) => {
+                if (notes[noteKey].title === title) {
+                    result[noteKey] = { ...notes[noteKey], content: newContent };
+                } else {
+                    result[noteKey] = notes[noteKey];
+                }
+                return result;
+            }, {});
 
-          copy[key].notes = updatedNotes;
-      }
-  });
+            copy[key].notes = updatedNotes;
+        }
+    });
 
-  setNoteBySubject(copy);
+    setNoteBySubject(copy);
 
-  const db = getDatabase();
-  const noteListRef = ref(db, "subjects/" + subject + "/notes");
-  firebaseSet(noteListRef, copy[keyToUse].notes);
-}
+    const db = getDatabase();
+    const noteListRef = ref(db, "subjects/" + subject + "/notes");
+    firebaseSet(noteListRef, copy[keyToUse].notes);
+  }
 
 
   return (
